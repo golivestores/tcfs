@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Too Cool For School</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f7f4; color: #1a1a1a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; }
+    h1 { font-size: 28px; font-weight: 700; letter-spacing: 3px; margin-bottom: 8px; }
+    p { font-size: 14px; color: #888; margin-bottom: 48px; }
+    .cards { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .card { display: block; width: 320px; background: #fff; border: 1px solid #e8e6e1; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow .3s, transform .3s; }
+    .card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.08); transform: translateY(-4px); }
+    .card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .card-body { padding: 20px; }
+    .card-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .card-desc { font-size: 13px; color: #888; line-height: 1.6; margin-bottom: 14px; }
+    .card-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1px; padding: 4px 10px; background: #f0eeea; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>TOO COOL FOR SCHOOL</h1>
+  <p>Homepage Design Versions</p>
+  <div class="cards">
+    <a class="card" href="v1/">
+      <img class="card-img" src="https://cdn.shopify.com/s/files/1/0577/1939/0270/files/6817c672ba72802e9331ee1b6f284dd5.jpg?v=1772777884" alt="Version 1">
+      <div class="card-body">
+        <div class="card-title">Version 1</div>
+        <div class="card-desc">Static HTML/CSS/JS</div>
+        <span class="card-tag">HTML + CSS + JS</span>
+      </div>
+    </a>
+    <a class="card" href="v2/">
+      <img class="card-img" src="https://cdn.shopify.com/s/files/1/0577/1939/0270/files/d349fe8fbde56ad30c1a924bc9f4dc05.jpg?v=1772777883" alt="Version 2">
+      <div class="card-body">
+        <div class="card-title">Version 2</div>
+        <div class="card-desc">React + Tailwind CSS v4</div>
+        <span class="card-tag">REACT + VITE + TAILWIND</span>
+      </div>
+    </a>
+  </div>
+</body>
+</html>
