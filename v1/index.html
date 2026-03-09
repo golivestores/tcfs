@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOO COOL FOR SCHOOL | 官方網站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 頂部公告欄 -->
+    <div class="top-bar" id="announcementBar">
+        <button class="ab-arrow ab-prev" id="abPrev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <div class="ab-messages" id="abMessages">
+            <p class="ab-msg active">全館滿 NT$1,500 即享免運配送</p>
+            <p class="ab-msg">重磅消息：迷你奇蹟膏 + 2 款全新色號正式加入系列</p>
+            <p class="ab-msg">新會員註冊即享首購 9 折優惠</p>
+        </div>
+        <button class="ab-arrow ab-next" id="abNext"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+
+    <!-- 導航欄 -->
+    <header class="header" id="siteHeader">
+        <!-- 上層：左側連結 + 中間 Logo + 右側圖示 -->
+        <div class="header-top">
+            <div class="ht-left">
+                <a href="#" class="ht-link">退換貨政策</a>
+                <a href="#" class="ht-link">找到你的色號</a>
+                <a href="#" class="ht-link">品牌故事</a>
+            </div>
+            <div class="ht-center">
+                <a href="#" class="logo">TOO COOL FOR SCHOOL</a>
+            </div>
+            <div class="ht-right">
+                <a href="#" class="nav-icon" title="搜尋"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></a>
+                <span class="ht-currency">🌐 NT$TWD</span>
+                <a href="#" class="nav-icon" title="帳戶"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+                <a href="#" class="nav-icon cart-icon" title="購物車"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> 購物袋<span class="cart-count">0</span></a>
+            </div>
+        </div>
+        <!-- 下層：主導航 + Mega Menu -->
+        <div class="header-nav">
+            <nav class="main-nav" id="mainNav">
+                <a href="#" class="mn-link" data-menu="all">全部商品</a>
+                <a href="#" class="mn-link" data-menu="face">底妝系列</a>
+                <a href="#" class="mn-link" data-menu="kits">套裝組合</a>
+                <a href="#" class="mn-link" data-menu="eyes">眼妝系列</a>
+                <a href="#" class="mn-link" data-menu="lips">唇妝系列</a>
+                <a href="#" class="mn-link" data-menu="skin">護膚系列</a>
+                <a href="#" class="mn-link" data-menu="body">身體護理</a>
+                <a href="#" class="mn-link" data-menu="more">更多</a>
+            </nav>
+        </div>
+        <!-- Mega Menu 下拉面板 -->
+        <div class="mega-menu" id="megaMenu">
+            <div class="mega-inner" id="megaInner"></div>
+        </div>
+    </header>
+
+    <!-- 主內容區域 - 後續板塊會逐步添加 -->
+    <main class="main-content">
+        <!-- Hero Banner 輪播 -->
+        <section id="hero" class="hero-banner">
+            <div class="banner-slides">
+                <!-- Slide 1 -->
+                <div class="banner-slide active animate-in" data-index="0">
+                    <div class="slide-bg slide-bg-1"></div>
+                    <div class="slide-content content-left">
+                        <span class="slide-label">全新上市</span>
+                        <h2 class="slide-title">夢幻兔兔系列</h2>
+                        <p class="slide-desc">一點浪漫，<br>一點魔法，<br>只為你。</p>
+                        <a href="#" class="slide-cta">立即選購</a>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="banner-slide" data-index="1">
+                    <div class="slide-bg slide-bg-2"></div>
+                    <div class="slide-content content-left">
+                        <span class="slide-label">人氣商品</span>
+                        <h2 class="slide-title">清透水光底妝</h2>
+                        <p class="slide-desc">輕薄服貼，<br>打造自然光澤肌。</p>
+                        <a href="#" class="slide-cta">立即選購</a>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="banner-slide" data-index="2">
+                    <div class="slide-bg slide-bg-3"></div>
+                    <div class="slide-content content-left">
+                        <span class="slide-label">暢銷推薦</span>
+                        <h2 class="slide-title">經典護膚系列</h2>
+                        <p class="slide-desc">溫和養護，<br>綻放自信光彩。</p>
+                        <a href="#" class="slide-cta">立即選購</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 自定義游標 -->
+            <div class="banner-cursor" id="bannerCursor">
+                <svg class="cursor-arrow cursor-arrow-left" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                <svg class="cursor-arrow cursor-arrow-right" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <!-- 底部進度條 -->
+            <div class="banner-progress">
+                <div class="progress-bar active" data-index="0"><span></span></div>
+                <div class="progress-bar" data-index="1"><span></span></div>
+                <div class="progress-bar" data-index="2"><span></span></div>
+            </div>
+
+            <!-- 暫停/播放按鈕 -->
+            <button class="banner-playpause" id="bannerPlayPause" title="暫停">
+                <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14">
+                    <rect x="5" y="3" width="4" height="18" fill="white"></rect>
+                    <rect x="15" y="3" width="4" height="18" fill="white"></rect>
+                </svg>
+                <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" style="display:none;">
+                    <polygon points="6,3 20,12 6,21" fill="white"></polygon>
+                </svg>
+            </button>
+        </section>
+
+        <!-- SVG 定義（圓形文字路徑） -->
+        <svg style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true">
+            <defs>
+                <path id="giftCirclePath" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/>
+            </defs>
+        </svg>
+
+        <!-- 套裝展示板塊 -->
+        <section class="collection-section">
+            <div class="collection-layout">
+                <!-- 左側：產品區域 -->
+                <div class="collection-main">
+                    <div class="collection-header">
+                        <div class="collection-header-text">
+                            <span class="collection-label">探索最新上市</span>
+                            <h2 class="collection-title">兔兔花園系列</h2>
+                        </div>
+                        <a href="#" class="collection-view-btn">瀏覽完整系列</a>
+                    </div>
+                    <div class="collection-carousel-wrap">
+                        <button class="col-arrow col-arrow-prev" aria-label="上一個">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <div class="col-carousel-viewport">
+                            <div class="col-carousel-track" id="collectionTrack">
+                                <!-- 產品卡片由 JS 動態渲染 -->
+                            </div>
+                        </div>
+                        <button class="col-arrow col-arrow-next" aria-label="下一個">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- 右側：形象大圖 -->
+                <div class="collection-hero-img">
+                    <div class="collection-hero-inner"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 網紅推薦板塊 -->
+        <section class="bestsellers-section" id="bestsellersSection">
+            <h2 class="bestsellers-title">暢銷人氣推薦</h2>
+            <div class="reels-carousel">
+                <div class="reels-viewport">
+                    <div class="reels-track" id="reelsTrack"></div>
+                </div>
+            </div>
+            <div class="reels-active-product" id="reelsActiveProduct"></div>
+            <div class="reels-dots" id="reelsDots"></div>
+            <div class="reels-nav">
+                <button class="reels-nav-btn" id="reelsNavPrev" aria-label="上一個">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="reels-nav-btn" id="reelsNavNext" aria-label="下一個">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- 促銷輪播板塊 -->
+        <section class="promo-section" id="promoSection">
+            <div class="promo-viewport">
+                <div class="promo-track" id="promoTrack"></div>
+            </div>
+            <div class="promo-nav">
+                <button class="promo-arrow" id="promoPrev" aria-label="上一頁">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="promo-dots" id="promoDots"></div>
+                <button class="promo-arrow" id="promoNext" aria-label="下一頁">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- 模特展示板塊 - Beauty From Every Angle -->
+        <section class="beauty-angle-section" id="beautyAngle">
+            <div class="beauty-angle-sticky">
+                <div class="ba-img ba-img-1"></div>
+                <div class="ba-img ba-img-2"></div>
+                <div class="ba-img ba-img-3"></div>
+                <div class="ba-img ba-img-4"></div>
+                <div class="ba-content">
+                    <h2 class="ba-title">每個角度 都是美</h2>
+                    <div class="ba-body">
+                        <p class="ba-desc">在 <strong>美的觀點</strong>，我們深信每個人都是多面且迷人的，各自散發著獨特的光彩。我們致力於讓這道光芒綻放。穿越紛繁喧囂，我們提供優質美妝產品與專業教育，助你擁抱獨一無二的自我視角。因為每個人都值得感到自信、充滿靈感，並擁有表達真實美麗觀點的力量。</p>
+                        <a href="#" class="ba-btn">瞭解更多</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 化妝流程推薦板塊 -->
+        <section class="routine-section" id="routineSection">
+            <div class="routine-layout">
+                <div class="routine-left">
+                    <div class="routine-arrow" id="routineArrow">
+                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none">
+                            <line x1="0" y1="8" x2="66" y2="8" stroke="#222" stroke-width="1.5"/>
+                            <polyline points="60,2 72,8 60,14" fill="none" stroke="#222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="routine-list" id="routineList"></div>
+                    <a href="#" class="routine-shop-btn">選購完整流程</a>
+                </div>
+                <div class="routine-right">
+                    <div class="routine-vids" id="routineVids"></div>
+                    <div class="routine-prod-card" id="routineProdCard">
+                        <div class="rpc-thumb" id="rpcThumb"></div>
+                        <div class="rpc-info">
+                            <p class="rpc-name" id="rpcName"></p>
+                            <p class="rpc-desc" id="rpcDesc"></p>
+                            <a href="#" class="rpc-add" id="rpcAdd"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 推薦板塊 -->
+        <section class="recommend-section" id="recommendSection">
+            <h2 class="recommend-title">我們的推薦</h2>
+            <div class="recommend-wrapper">
+                <button class="recommend-arrow recommend-prev" id="recPrev" aria-label="上一頁">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="recommend-viewport">
+                    <div class="recommend-track" id="recTrack"></div>
+                </div>
+                <button class="recommend-arrow recommend-next" id="recNext" aria-label="下一頁">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- 爆品板塊 -->
+        <section class="featured-section">
+            <div class="featured-grid">
+                <div class="featured-panel fp-panel-1">
+                    <div class="fp-text-wrap">
+                        <div class="fp-text">
+                            <span class="fp-label">TOO COOL FOR SCHOOL</span>
+                            <h3 class="fp-title">底妝精選</h3>
+                            <p class="fp-desc">從水潤妝前乳到持久定妝，打造完美無瑕的日常底妝</p>
+                            <div class="fp-ctas">
+                                <a href="#" class="fp-cta">立即選購</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-panel fp-panel-2">
+                    <div class="fp-text-wrap">
+                        <div class="fp-text">
+                            <span class="fp-label">TOO COOL FOR SCHOOL</span>
+                            <h3 class="fp-title">春日彩妝</h3>
+                            <p class="fp-desc">以清新色調迎接新季節，展現自信亮眼的春日妝容</p>
+                            <div class="fp-ctas">
+                                <a href="#" class="fp-cta">選購唇妝</a>
+                                <a href="#" class="fp-cta">選購眼妝</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- 影片彈窗 -->
+    <div class="video-modal" id="videoModal">
+        <div class="vmodal-overlay" id="vmodalOverlay"></div>
+        <div class="vmodal-wrap">
+            <div class="vmodal-player">
+                <div class="vmodal-pbars" id="vmodalPbars"></div>
+                <div class="vmodal-top">
+                    <button class="vmodal-btn" id="vmodalMin" title="縮小"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/></svg></button>
+                    <button class="vmodal-btn" id="vmodalMute" title="靜音"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></button>
+                    <button class="vmodal-btn" id="vmodalClose" title="關閉"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                </div>
+                <div class="vmodal-video" id="vmodalVideo"></div>
+                <div class="vmodal-side-acts">
+                    <button class="vmodal-act"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+                    <button class="vmodal-act vmodal-like"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>9</span></button>
+                </div>
+                <div class="vmodal-text" id="vmodalText"><p class="vmt-title"></p><p class="vmt-shade"></p></div>
+                <div class="vmodal-prodbar" id="vmodalProd">
+                    <div class="vmpb-thumb"></div>
+                    <div class="vmpb-info"><p class="vmpb-name"></p><p class="vmpb-price"></p></div>
+                    <button class="vmpb-add">+</button>
+                </div>
+                <div class="vmodal-dots" id="vmodalDots"></div>
+            </div>
+            <div class="vmodal-sidenav">
+                <button class="vmodal-snav" id="vmodalUp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg></button>
+                <button class="vmodal-snav" id="vmodalDown"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 迷你播放器 PiP -->
+    <div class="mini-player" id="miniPlayer">
+        <div class="mini-inner">
+            <div class="mini-top">
+                <button class="mini-btn" id="miniExpand" title="展開"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/></svg></button>
+                <button class="mini-btn" id="miniMute" title="靜音"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></button>
+                <button class="mini-btn" id="miniClose" title="關閉"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            </div>
+            <div class="mini-video" id="miniVideo"></div>
+            <div class="mini-prodbar" id="miniProd">
+                <div class="mnpb-thumb"></div>
+                <div class="mnpb-info"><p class="mnpb-name"></p><p class="mnpb-price"></p></div>
+            </div>
+            <div class="mini-dots" id="miniDots"></div>
+        </div>
+    </div>
+
+    <!-- 頁腳 -->
+    <footer class="footer">
+        <!-- 訂閱區 -->
+        <div class="footer-newsletter">
+            <h3 class="fn-title">訂閱最新消息：</h3>
+            <p class="fn-sub">搶先獲得新品上市與獨家優惠資訊！</p>
+            <form class="fn-form" onsubmit="return false">
+                <input type="email" class="fn-input" placeholder="請輸入電子郵件">
+                <button class="fn-submit" aria-label="訂閱">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- 連結區 -->
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>關於 TOO COOL FOR SCHOOL</h4>
+                <a href="#">會員忠誠計畫</a>
+                <a href="#">品牌故事</a>
+                <a href="#">聯盟合作計畫</a>
+                <a href="#">學生優惠</a>
+                <a href="#">社群</a>
+                <a href="#">成為零售夥伴</a>
+            </div>
+            <div class="footer-col">
+                <h4>顧客服務</h4>
+                <a href="#">配送政策</a>
+                <a href="#">退換貨政策</a>
+                <a href="#">促銷活動條款</a>
+                <a href="#">隱私權政策</a>
+                <a href="#">服務條款</a>
+            </div>
+            <div class="footer-col">
+                <h4>客戶支援</h4>
+                <a href="#">訂單追蹤</a>
+                <a href="#">常見問題</a>
+                <a href="#">聯繫我們</a>
+                <a href="#">檢舉仿冒品</a>
+            </div>
+            <div class="footer-col">
+                <h4>關注我們</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    <a href="#" title="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.993 3.995-.282 1.193.599 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.091.375-.293 1.199-.334 1.363-.053.225-.174.271-.402.163-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+                    <a href="#" title="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+                    <a href="#" title="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13.2a8.16 8.16 0 005.58 2.17V12a4.85 4.85 0 01-3.58-1.59V6.69z"/></svg></a>
+                    <a href="#" title="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部列 -->
+        <div class="footer-bottom">
+            <div class="fb-left">
+                <p>&copy; 2026, Too Cool For School. 版權所有。</p>
+            </div>
+            <div class="fb-right">
+                <div class="fb-region">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+                    <span>港澳台 (TWD $)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 支付圖示 -->
+        <div class="footer-payments">
+            <span class="pay-icon">💳 Visa</span>
+            <span class="pay-icon">💳 Mastercard</span>
+            <span class="pay-icon">💳 Apple Pay</span>
+            <span class="pay-icon">💳 Google Pay</span>
+            <span class="pay-icon">💳 PayPal</span>
+            <span class="pay-icon">💳 Shop Pay</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
