@@ -1,0 +1,116 @@
+/* v2-blocks.css — scoped styles for sections imported from v2 (Vite/Tailwind build).
+   All rules are nested under .v2-blocks so they cannot leak into v1's global styles. */
+
+.v2-blocks {
+    --ink: #1a1714;
+    --off-white: #faf8f4;
+    --cream: #f5f0e8;
+    --panel-bg: #f5f5f5;
+
+    font-family: "DM Sans", "Noto Sans TC", sans-serif;
+    color: var(--ink);
+    background: var(--panel-bg);
+    display: flow-root; /* prevent the first section's margin-top from collapsing out of the container (would otherwise show body white through the gap) */
+    overflow-x: hidden; /* contain any vw-based section margins so they don't push body wider than viewport */
+}
+
+.v2-blocks * { box-sizing: border-box; }
+.v2-blocks h2 { font-size: inherit; font-weight: inherit; margin: 0; }
+.v2-blocks p  { margin: 0; }
+.v2-blocks a  { color: inherit; text-decoration: none; }
+.v2-blocks img,
+.v2-blocks video { display: block; max-width: 100%; }
+
+.v2-blocks .font-display { font-family: "DM Serif Display", "Noto Serif TC", serif; }
+.v2-blocks .font-body    { font-family: "DM Sans", "Noto Sans TC", sans-serif; }
+.v2-blocks .italic       { font-style: italic; }
+.v2-blocks .font-medium  { font-weight: 500; }
+.v2-blocks .uppercase    { text-transform: uppercase; }
+.v2-blocks .text-center  { text-align: center; }
+.v2-blocks .text-white   { color: #fff; }
+.v2-blocks .text-\[13px\]{ font-size: 13px; }
+.v2-blocks .tracking-\[0\.1em\] { letter-spacing: 0.1em; }
+.v2-blocks .leading-\[1\.1\] { line-height: 1.1; }
+.v2-blocks .leading-\[1\.8\] { line-height: 1.8; }
+.v2-blocks .text-white\/85   { color: rgba(255,255,255,0.85); }
+
+.v2-blocks .relative      { position: relative; }
+.v2-blocks .absolute      { position: absolute; }
+.v2-blocks .inset-0       { inset: 0; }
+.v2-blocks .w-full        { width: 100%; }
+.v2-blocks .h-full        { height: 100%; }
+.v2-blocks .overflow-hidden { overflow: hidden; }
+.v2-blocks .object-cover  { object-fit: cover; }
+.v2-blocks .z-10          { z-index: 10; }
+.v2-blocks .mx-auto       { margin-left: auto; margin-right: auto; }
+.v2-blocks .max-w-\[480px\]{ max-width: 480px; }
+.v2-blocks .max-w-\[620px\]{ max-width: 620px; }
+
+.v2-blocks .flex          { display: flex; }
+.v2-blocks .grid          { display: grid; }
+.v2-blocks .inline-block  { display: inline-block; }
+.v2-blocks .flex-col      { flex-direction: column; }
+.v2-blocks .items-center  { align-items: center; }
+.v2-blocks .justify-center{ justify-content: center; }
+.v2-blocks .justify-end   { justify-content: flex-end; }
+.v2-blocks .grid-cols-1   { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.v2-blocks .px-6          { padding-left: 1.5rem;  padding-right: 1.5rem; }
+.v2-blocks .px-8          { padding-left: 2rem;    padding-right: 2rem; }
+.v2-blocks .pt-20         { padding-top: 5rem; }
+.v2-blocks .transition-all{ transition: all .3s cubic-bezier(0.4, 0, 0.2, 1); }
+.v2-blocks .duration-300  { transition-duration: .3s; }
+
+@media (min-width: 768px) {
+    .v2-blocks .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Desktop: unify typography across all v2 blocks (overrides inline styles). */
+@media (min-width: 769px) {
+    .v2-blocks h2 { font-size: 40px !important; line-height: 1.15 !important; }
+    .v2-blocks p  { font-size: 15px !important; line-height: 1.75 !important; }
+    .v2-blocks a.inline-block { font-size: 12px !important; }
+}
+
+/* Reveal-on-scroll animation (matches v2 behaviour). */
+.v2-blocks .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s cubic-bezier(.22,1,.36,1),
+                transform .7s cubic-bezier(.22,1,.36,1);
+}
+.v2-blocks .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* CTA hover (button states from v2). */
+.v2-blocks a.inline-block:hover {
+    background: var(--ink);
+    color: var(--off-white);
+}
+.v2-blocks a.inline-block.text-white:hover {
+    background: rgba(255,255,255,.12);
+    border-color: #fff !important;
+}
+
+/* Mobile: 2-col grid blocks (5/6/7/8) stack vertically with text on top, image (3:2) below — regardless of desktop left/right order. */
+@media (max-width: 768px) {
+    .v2-blocks section.grid {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+    }
+    .v2-blocks section.grid > .flex.flex-col {
+        order: 1;
+        padding: 32px 24px !important;
+    }
+    .v2-blocks section.grid > .relative.overflow-hidden,
+    .v2-blocks section.grid > .flex.items-center.justify-center {
+        order: 2;
+        aspect-ratio: 3 / 2;
+        min-height: 0;
+        height: auto;
+        width: 100%;
+    }
+    /* Unify mobile typography across all v2 blocks. */
+    .v2-blocks h2 { font-size: 28px !important; line-height: 1.15 !important; }
+    .v2-blocks p  { font-size: 14px !important; line-height: 1.7 !important; }
+    .v2-blocks a.inline-block { font-size: 12px !important; padding: 0.75rem 1.8rem !important; }
+}
