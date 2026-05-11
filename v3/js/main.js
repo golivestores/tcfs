@@ -851,12 +851,18 @@ class QuickViewModal {
             const card = e.target.closest('.product-card');
             if (!card) return;
             const addBtn = e.target.closest('.product-add-to-cart');
-            const isInteractive = e.target.closest('.swatch,.swatch-more,.product-img-next,.product-quick-view,a,button');
-            const isMobile = window.innerWidth <= 768;
-            if (addBtn || (isMobile && !isInteractive)) {
+            if (addBtn) {
                 e.preventDefault();
                 e.stopPropagation();
                 this.open(card);
+                return;
+            }
+            if (e.target.closest('.swatch,.swatch-more,.product-img-next,a,button')) return;
+            const imgArea = e.target.closest('.product-image-area');
+            const info = e.target.closest('.product-info');
+            if (imgArea || info) {
+                e.preventDefault();
+                window.location.href = card.dataset.productUrl || '#';
             }
         });
     }
@@ -891,6 +897,9 @@ class QuickViewModal {
         this.qty = 1;
         this.elQty.textContent = '1';
         this.updateImage();
+        const url = card.dataset.productUrl || '#';
+        const viewFull = this.modal.querySelector('.qv-view-full');
+        if (viewFull) viewFull.href = url;
         this.modal.classList.add('open');
         this.modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';

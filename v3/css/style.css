@@ -130,7 +130,7 @@ img{max-width:100%;height:auto;display:block}
 .col-arrow-prev{left:-21px}.col-arrow-next{right:-21px}
 .product-card{flex:0 0 calc((100% - 54px)/3.15);border:1px solid #e0e0e0;background:#fff;cursor:pointer;transition:box-shadow .3s}
 .product-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.product-image-area{position:relative;padding-top:100%;overflow:hidden}
+.product-image-area{position:relative;padding-top:100%;overflow:hidden;cursor:pointer}
 .product-img{position:absolute;inset:0;opacity:0;transition:opacity .35s}.product-img.active{opacity:1}
 .product-badges{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;padding:12px;z-index:3;pointer-events:none}
 .badge-gift-wrap{width:60px;height:60px;flex-shrink:0;object-fit:contain}
