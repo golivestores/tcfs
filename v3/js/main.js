@@ -408,8 +408,8 @@ class CollectionSection {
         const imgs=p.variants.map((v,i)=>`<div class="product-img${i===0?' active':''}" data-variant="${i}"><img src="${v.img}" alt="${v.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>`).join('');
         let badges='';if(p.isSet)badges=`<div class="product-badges"><img class="badge-gift-wrap" src="${awardLogos[idx%2]}" alt="award"><div class="badge-tags"><span class="badge-tag badge-customizable">可自選搭配</span><span class="badge-tag badge-value">原價 $${p.value}</span></div></div>`;
         const price=p.salePrice?`<span class="price-original">$${p.originalPrice.toFixed(2)}</span><span class="price-sale">$${p.salePrice.toFixed(2)}</span>`:`<span class="price-current">$${p.originalPrice.toFixed(2)}</span>`;
-        const mx=p.maxSwatches||p.variants.length,vis=p.variants.slice(0,mx),ext=p.variants.length-mx;
-        const sw=vis.map((v,i)=>`<button class="swatch${i===0?' active':''}" data-variant="${i}" data-name="${v.name}" style="background-color:${v.swatch}" title="${v.name}"></button>`).join('')+(ext>0?`<span class="swatch-more">+${ext}</span>`:'');
+        const mx=p.maxSwatches||5,vis=p.variants.slice(0,mx),ext=p.variants.length-vis.length;
+        const sw=vis.map((v,i)=>`<button class="swatch${i===0?' active':''}" data-variant="${i}" data-name="${v.name}" style="background-color:${v.swatch}" title="${v.name}"></button>`).join('')+(ext>0?`<span class="swatch-more">+${ext}more</span>`:'');
         const vl=p.isSet?'':`\u2013 ${p.variants[0].name}`;
         return `<div class="product-card" data-product="${idx}"><div class="product-image-area">${imgs}${badges}<button class="product-quick-view" aria-label="快速查看"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button><button class="product-img-next" aria-label="下一張"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button><div class="product-add-to-cart">加入購物車</div></div><div class="product-info"><h3 class="product-name"><span class="name-base">${p.name}</span><span class="name-variant"> ${vl}</span></h3><div class="product-pricing">${price}</div><div class="variant-swatches">${sw}</div></div></div>`;
     }
@@ -755,7 +755,8 @@ class RecommendSection {
             let badges = '';
             if (hasBadges) badges = `<div class="product-badges"><img class="badge-gift-wrap" src="${awardLogos[idx%2]}" alt="award"><div class="badge-tags">${d.badges.map(b=>`<span class="badge-tag badge-customizable">${b}</span>`).join('')}${d.originalTag?`<span class="badge-tag badge-value">${d.originalTag}</span>`:''}</div></div>`;
             const price = `<span class="price-original">${d.oldPrice}</span><span class="price-sale">${d.newPrice}</span>`;
-            const sw = d.swatches.map((s,i) => `<button class="swatch${i===0?' active':''}" data-variant="${i}" style="background-color:${s.color}" title="${d.name}"></button>`).join('');
+            const visSw = d.swatches.slice(0,5), extSw = d.swatches.length - visSw.length;
+            const sw = visSw.map((s,i) => `<button class="swatch${i===0?' active':''}" data-variant="${i}" style="background-color:${s.color}" title="${d.name}"></button>`).join('') + (extSw>0?`<span class="swatch-more">+${extSw}more</span>`:'');
             return `<div class="product-card" data-product="${idx}"><div class="product-image-area">${imgs}${badges}<button class="product-quick-view" aria-label="快速查看"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button><div class="product-add-to-cart">加入購物車</div></div><div class="product-info"><h3 class="product-name"><span class="name-base">${d.name}</span></h3><div class="product-pricing">${price}</div><div class="variant-swatches">${sw}</div></div></div>`;
         }).join('');
         this.setupSwatches();
