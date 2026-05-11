@@ -110,6 +110,8 @@
         height: auto;
         width: 100%;
     }
+    /* Block 4 (artclass video banner): switch from 16:9 to 3:4 on mobile. */
+    .v2-blocks > section.relative.overflow-hidden { aspect-ratio: 3 / 4 !important; }
     /* Unify mobile typography across all v2 blocks. */
     .v2-blocks h2 { font-size: 28px !important; line-height: 1.15 !important; }
     .v2-blocks p  { font-size: 14px !important; line-height: 1.7 !important; }
