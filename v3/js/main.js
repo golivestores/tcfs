@@ -621,7 +621,9 @@ class ReelsSection {
         vc.style.background = r.bg;
         vc.innerHTML = `<video src="${r.video}" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`;
         this.modalVid = vc.querySelector('video');
+        this.modalVid.muted = this.isMuted;
         this.modalVid.play().catch(()=>{});
+        this.updateMuteIcons();
         // Text
         const tt = document.getElementById('vmodalText');
         tt.querySelector('.vmt-title').innerHTML = r.title.replace(/\n/g, '<br>');
@@ -670,7 +672,28 @@ class ReelsSection {
         this.progressRaf = requestAnimationFrame(() => this.tickProgress());
     }
 
-    toggleMute() { this.isMuted = !this.isMuted; }
+    toggleMute() {
+        this.isMuted = !this.isMuted;
+        [this.modalVid, this.miniVid].forEach(v => {
+            if (!v) return;
+            v.muted = this.isMuted;
+            if (!this.isMuted) v.play().catch(() => {});
+        });
+        this.updateMuteIcons();
+    }
+
+    muteSvg(size, muted) {
+        return muted
+            ? `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`
+            : `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
+    }
+
+    updateMuteIcons() {
+        const modalBtn = document.getElementById('vmodalMute');
+        const miniBtn = document.getElementById('miniMute');
+        if (modalBtn) modalBtn.innerHTML = this.muteSvg(18, this.isMuted);
+        if (miniBtn) miniBtn.innerHTML = this.muteSvg(14, this.isMuted);
+    }
 
     /* --- 迷你播放器 --- */
     setupMini() {
@@ -698,7 +721,9 @@ class ReelsSection {
         mc.style.background = r.bg;
         mc.innerHTML = `<video src="${r.video}" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`;
         this.miniVid = mc.querySelector('video');
+        this.miniVid.muted = this.isMuted;
         this.miniVid.play().catch(()=>{});
+        this.updateMuteIcons();
         const pb = document.getElementById('miniProd');
         pb.querySelector('.mnpb-thumb').style.background = r.product.bg;
         pb.querySelector('.mnpb-name').textContent = r.product.name;
