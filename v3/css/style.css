@@ -451,7 +451,7 @@ img{max-width:100%;height:auto;display:block}
 .slide-bg-1{background-image:url('https://cdn.shopify.com/s/files/1/0577/1939/0270/files/85ad9e375434906e2388dd6512ee8a7c.jpg?v=1772777883')}
 .slide-bg-2{background-image:url('https://cdn.shopify.com/s/files/1/0577/1939/0270/files/cce8cb5eca939ec55fba01beee482daa.jpg?v=1772777883')}
 .slide-bg-3{background-image:url('https://cdn.shopify.com/s/files/1/0577/1939/0270/files/a53c309f6ead90487e1251e48860ceab.jpg?v=1772777883')}
-.hero-banner{aspect-ratio:16/9;height:auto;min-height:0;cursor:auto}
+.hero-banner{aspect-ratio:9/16;height:auto;min-height:0;cursor:auto}
 .banner-cursor{display:none!important}
 .slide-title{font-size:28px}.slide-desc{font-size:14px}
 .slide-content,.slide-content.content-left,.slide-content.content-right{top:auto;bottom:14%;left:50%;right:auto;transform:translateX(-50%);max-width:220px;text-align:center}
