@@ -82,8 +82,9 @@
 
 /* CTA hover (button states from v2). */
 .v2-blocks a.inline-block:hover {
-    background: var(--ink);
-    color: var(--off-white);
+    background: var(--ink) !important;
+    color: #fff !important;
+    border-color: var(--ink) !important;
 }
 .v2-blocks a.inline-block.text-white:hover {
     background: rgba(255,255,255,.12);
