@@ -243,7 +243,7 @@ img{max-width:100%;height:auto;display:block}
 .vmodal-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.12);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
 .vmodal-btn:hover{background:rgba(255,255,255,.28)}
 .vmodal-video{min-height:480px;position:relative;background-size:cover;background-position:center}
-.vmodal-side-acts{position:absolute;right:12px;bottom:120px;display:flex;flex-direction:column;gap:16px;z-index:5}
+.vmodal-side-acts{display:none}
 .vmodal-act{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;color:#fff;cursor:pointer;font-size:10px}
 .vmodal-act:hover{opacity:.8}
 .vmodal-text{display:none}
