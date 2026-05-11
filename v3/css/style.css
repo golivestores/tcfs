@@ -256,7 +256,7 @@ img{max-width:100%;height:auto;display:block}
 .vmpb-price{font-size:12px;color:#666}
 .vmpb-add{width:32px;height:32px;border-radius:50%;border:1.5px solid #ddd;background:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#333;transition:border-color .2s}
 .vmpb-add:hover{border-color:#999}
-.vmodal-dots{display:flex;justify-content:center;gap:5px;padding:8px 0 10px;background:#fff;border-radius:0 0 12px 12px}
+.vmodal-dots{display:none}
 .vmodal-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.2);border:none;padding:0}
 .vmodal-dot.active{background:#333}
 .vmodal-sidenav{display:flex;flex-direction:column;gap:8px}
