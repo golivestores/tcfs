@@ -434,13 +434,13 @@ class ReelsSection {
         this.track = document.getElementById('reelsTrack');
         if (!this.track) return;
         this.data = [
-            { bg:'linear-gradient(180deg,#f0d5cc,#e0b8a8 40%,#dab0a0)',title:'甜心小熊系列\n浮雕腮紅',shade:'C3 甜心',product:{name:'甜心小熊六色彩妝盤',price:35,bg:'#f0d0c8'},dur:10000,video:'https://cdn.shopify.com/videos/c/o/v/6af6f93c860147b485384c8eeb5e724b.mp4'},
-            { bg:'linear-gradient(180deg,#e8d0c8,#d0b0a0 40%,#c09888)',title:'兔兔花園系列\n雲朵唇霜',shade:'B03 藕粉夢幻',product:{name:'兔兔花園雲朵唇霜',price:20,bg:'#e8c0c4'},dur:8000,video:'https://cdn.shopify.com/videos/c/o/v/f7ce230b8ee74a66a68fc38ff634ee42.mp4'},
-            { bg:'linear-gradient(180deg,#f5e8e0,#e0c8b8 40%,#d0b0a0)',title:'TOO COOL FOR SCHOOL\n遮瑕盤',shade:'自然亮白',product:{name:'藝術課堂遮瑕盤',price:28,bg:'#f0e0d4'},dur:12000,video:'https://cdn.shopify.com/videos/c/o/v/546a22afd66642b0a2763bc0f655ec6c.mp4'},
-            { bg:'linear-gradient(180deg,#f8e8e0,#e8c8bc 40%,#d8b0a4)',title:'甜心小熊系列\n緞面腮紅',shade:'C3 玫瑰情歌',product:{name:'甜心小熊六色彩妝盤',price:35,bg:'#f0d0c8'},dur:10000,video:'https://cdn.shopify.com/videos/c/o/v/5c4b48fde68644318d9d59598f23b9fe.mp4'},
-            { bg:'linear-gradient(180deg,#f0dcd8,#e0c0b8 40%,#d0a8a0)',title:'甜心小熊系列\n果凍唇釉',shade:'JE04 緞帶粉',product:{name:'甜心小熊果凍唇釉',price:18,bg:'#f0c8c8'},dur:9000,video:'https://cdn.shopify.com/videos/c/o/v/d8357ad4f7ef4bca848db8905739063f.mp4'},
-            { bg:'linear-gradient(180deg,#e8d8d0,#d8c0b4 40%,#c8a89c)',title:'兔兔花園系列\n浮雕腮紅',shade:'V06 鬱金香',product:{name:'兔兔花園浮雕腮紅',price:26,bg:'#e8c8c0'},dur:11000,video:'https://cdn.shopify.com/videos/c/o/v/6af6f93c860147b485384c8eeb5e724b.mp4'},
-            { bg:'linear-gradient(180deg,#f5d8d8,#e0b0b8 40%,#d498a0)',title:'兔兔花園系列\n手持鏡',shade:'粉色緞帶',product:{name:'兔兔花園精緻手持鏡',price:22,bg:'#f0c0c8'},dur:8000,video:'https://cdn.shopify.com/videos/c/o/v/f7ce230b8ee74a66a68fc38ff634ee42.mp4'},
+            { bg:'linear-gradient(180deg,#f0d5cc,#e0b8a8 40%,#dab0a0)',title:'甜心小熊系列\n浮雕腮紅',shade:'C3 甜心',product:{name:'甜心小熊六色彩妝盤',price:35,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/77f0ef16e0fbc52baa3dea6f4a2e4a0e.jpg?v=1772784822'},dur:10000,video:'https://cdn.shopify.com/videos/c/o/v/6af6f93c860147b485384c8eeb5e724b.mp4'},
+            { bg:'linear-gradient(180deg,#e8d0c8,#d0b0a0 40%,#c09888)',title:'兔兔花園系列\n雲朵唇霜',shade:'B03 藕粉夢幻',product:{name:'兔兔花園雲朵唇霜',price:20,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/d7d786ffc26a7e958be6a71929934d0b.jpg?v=1772784822'},dur:8000,video:'https://cdn.shopify.com/videos/c/o/v/f7ce230b8ee74a66a68fc38ff634ee42.mp4'},
+            { bg:'linear-gradient(180deg,#f5e8e0,#e0c8b8 40%,#d0b0a0)',title:'TOO COOL FOR SCHOOL\n遮瑕盤',shade:'自然亮白',product:{name:'藝術課堂遮瑕盤',price:28,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/484291c3591841355507e3c3352a3e2b.jpg?v=1772784822'},dur:12000,video:'https://cdn.shopify.com/videos/c/o/v/546a22afd66642b0a2763bc0f655ec6c.mp4'},
+            { bg:'linear-gradient(180deg,#f8e8e0,#e8c8bc 40%,#d8b0a4)',title:'甜心小熊系列\n緞面腮紅',shade:'C3 玫瑰情歌',product:{name:'甜心小熊六色彩妝盤',price:35,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/2df6780054db4d9b458828e39609f31c.jpg?v=1772784822'},dur:10000,video:'https://cdn.shopify.com/videos/c/o/v/5c4b48fde68644318d9d59598f23b9fe.mp4'},
+            { bg:'linear-gradient(180deg,#f0dcd8,#e0c0b8 40%,#d0a8a0)',title:'甜心小熊系列\n果凍唇釉',shade:'JE04 緞帶粉',product:{name:'甜心小熊果凍唇釉',price:18,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/111b02976f89989ea9015e8eb99bb940.jpg?v=1772784822'},dur:9000,video:'https://cdn.shopify.com/videos/c/o/v/d8357ad4f7ef4bca848db8905739063f.mp4'},
+            { bg:'linear-gradient(180deg,#e8d8d0,#d8c0b4 40%,#c8a89c)',title:'兔兔花園系列\n浮雕腮紅',shade:'V06 鬱金香',product:{name:'兔兔花園浮雕腮紅',price:26,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/076dcebd67088d85d2eb403f65020479.jpg?v=1772784822'},dur:11000,video:'https://cdn.shopify.com/videos/c/o/v/6af6f93c860147b485384c8eeb5e724b.mp4'},
+            { bg:'linear-gradient(180deg,#f5d8d8,#e0b0b8 40%,#d498a0)',title:'兔兔花園系列\n手持鏡',shade:'粉色緞帶',product:{name:'兔兔花園精緻手持鏡',price:22,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/77f0ef16e0fbc52baa3dea6f4a2e4a0e.jpg?v=1772784822'},dur:8000,video:'https://cdn.shopify.com/videos/c/o/v/f7ce230b8ee74a66a68fc38ff634ee42.mp4'},
         ];
         this.setSize = this.data.length;
         this.activeIdx = 3;
@@ -558,7 +558,7 @@ class ReelsSection {
     updateActive() {
         this.cards.forEach((c, i) => c.classList.toggle('active', i === this.displayIdx));
         const r = this.data[this.activeIdx];
-        document.getElementById('reelsActiveProduct').innerHTML = `<div class="reel-product-card"><div class="reel-prod-thumb" style="background:${r.product.bg}"></div><div class="reel-prod-detail"><p class="reel-prod-name">${r.product.name}</p><p class="reel-prod-price">$${r.product.price}</p></div></div>`;
+        document.getElementById('reelsActiveProduct').innerHTML = `<div class="reel-product-card"><div class="reel-prod-thumb" style="background-image:url('${r.product.img}')"></div><div class="reel-prod-detail"><p class="reel-prod-name">${r.product.name}</p><p class="reel-prod-price">$${r.product.price}</p></div></div>`;
         document.querySelectorAll('.reels-dot').forEach((d, i) => d.classList.toggle('active', i === this.activeIdx));
         this.scrollToDisplay(this.displayIdx, true);
         // Play/pause videos — only active card plays; reset to muted when switching
@@ -630,7 +630,7 @@ class ReelsSection {
         tt.querySelector('.vmt-shade').textContent = r.shade;
         // Product bar
         const pb = document.getElementById('vmodalProd');
-        pb.querySelector('.vmpb-thumb').style.background = r.product.bg;
+        pb.querySelector('.vmpb-thumb').style.cssText = `background:url('${r.product.img}') center/cover no-repeat,#f5f5f5`;
         pb.querySelector('.vmpb-name').textContent = r.product.name;
         pb.querySelector('.vmpb-price').textContent = `$${r.product.price}`;
         // Progress bars
@@ -725,7 +725,7 @@ class ReelsSection {
         this.miniVid.play().catch(()=>{});
         this.updateMuteIcons();
         const pb = document.getElementById('miniProd');
-        pb.querySelector('.mnpb-thumb').style.background = r.product.bg;
+        pb.querySelector('.mnpb-thumb').style.cssText = `background:url('${r.product.img}') center/cover no-repeat,#f5f5f5`;
         pb.querySelector('.mnpb-name').textContent = r.product.name;
         pb.querySelector('.mnpb-price').textContent = `$${r.product.price}`;
         document.getElementById('miniDots').innerHTML = this.data.map((_, i) => `<span class="mini-dot${i===this.modalIdx?' active':''}"></span>`).join('');
