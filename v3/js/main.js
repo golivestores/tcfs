@@ -585,6 +585,20 @@ class ReelsSection {
         document.getElementById('vmodalMute').addEventListener('click', () => this.toggleMute());
         document.getElementById('vmodalUp').addEventListener('click', () => this.advanceModal(-1));
         document.getElementById('vmodalDown').addEventListener('click', () => this.advanceModal(1));
+        // Modal product bar "+" button → navigate to product page
+        const addBtn = document.querySelector('.vmpb-add');
+        if (addBtn) addBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            const r = this.data[this.modalIdx];
+            window.location.href = r?.product?.url || '#';
+        });
+        // Reel active product card (under carousel) → navigate to product page
+        document.getElementById('reelsActiveProduct').addEventListener('click', e => {
+            const card = e.target.closest('.reel-product-card');
+            if (!card) return;
+            const r = this.data[this.activeIdx];
+            window.location.href = r?.product?.url || '#';
+        });
     }
 
     openModal(idx) {
