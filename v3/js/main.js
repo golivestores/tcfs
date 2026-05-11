@@ -419,7 +419,8 @@ class CollectionSection {
     updateTrackPosition(){if(!this.cards||!this.cards.length)return;this.track.style.transform=`translateX(-${this.currentOffset*(this.cards[0].offsetWidth+this.gap)}px)`}
     updateArrows(){const p=document.querySelector('.col-arrow-prev'),n=document.querySelector('.col-arrow-next');if(!p)return;p.classList.toggle('disabled',this.currentOffset<=0);n.classList.toggle('disabled',this.currentOffset>=this.maxOffset)}
     setupInteractions(){
-        this.track.querySelectorAll('.swatch').forEach(s=>s.addEventListener('mouseenter',()=>{const c=s.closest('.product-card'),vi=s.dataset.variant,nm=s.dataset.name;c.querySelectorAll('.swatch').forEach(x=>x.classList.remove('active'));s.classList.add('active');c.querySelectorAll('.product-img').forEach(x=>x.classList.remove('active'));const t=c.querySelector(`.product-img[data-variant="${vi}"]`);if(t)t.classList.add('active');c.querySelector('.name-variant').textContent=` \u2013 ${nm}`}));
+        const switchVariant=s=>{const c=s.closest('.product-card'),vi=s.dataset.variant,nm=s.dataset.name;c.querySelectorAll('.swatch').forEach(x=>x.classList.remove('active'));s.classList.add('active');c.querySelectorAll('.product-img').forEach(x=>x.classList.remove('active'));const t=c.querySelector(`.product-img[data-variant="${vi}"]`);if(t)t.classList.add('active');const nv=c.querySelector('.name-variant');if(nv)nv.textContent=` \u2013 ${nm}`};
+        this.track.querySelectorAll('.swatch').forEach(s=>{s.addEventListener('mouseenter',()=>switchVariant(s));s.addEventListener('click',e=>{e.stopPropagation();switchVariant(s)});});
         this.track.querySelectorAll('.product-img-next').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const c=b.closest('.product-card'),imgs=[...c.querySelectorAll('.product-img')],sws=[...c.querySelectorAll('.swatch')],ai=imgs.findIndex(x=>x.classList.contains('active')),ni=(ai+1)%imgs.length;imgs.forEach(x=>x.classList.remove('active'));imgs[ni].classList.add('active');sws.forEach(x=>x.classList.remove('active'));if(sws[ni])sws[ni].classList.add('active');const pi=parseInt(c.dataset.product),v=this.products[pi].variants[ni];if(v)c.querySelector('.name-variant').textContent=` \u2013 ${v.name}`}));
     }
 }
@@ -761,15 +762,17 @@ class RecommendSection {
     }
 
     setupSwatches() {
+        const switchVariant = s => {
+            const card = s.closest('.product-card');
+            card.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
+            s.classList.add('active');
+            card.querySelectorAll('.product-img').forEach(x => x.classList.remove('active'));
+            const t = card.querySelector(`.product-img[data-variant="${s.dataset.variant}"]`);
+            if (t) t.classList.add('active');
+        };
         this.track.querySelectorAll('.swatch').forEach(s => {
-            s.addEventListener('mouseenter', () => {
-                const card = s.closest('.product-card');
-                card.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
-                s.classList.add('active');
-                card.querySelectorAll('.product-img').forEach(x => x.classList.remove('active'));
-                const t = card.querySelector(`.product-img[data-variant="${s.dataset.variant}"]`);
-                if (t) t.classList.add('active');
-            });
+            s.addEventListener('mouseenter', () => switchVariant(s));
+            s.addEventListener('click', e => { e.stopPropagation(); switchVariant(s); });
         });
     }
 
