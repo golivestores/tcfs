@@ -451,11 +451,10 @@ img{max-width:100%;height:auto;display:block}
 .slide-bg-1{background-image:url('https://cdn.shopify.com/s/files/1/0577/1939/0270/files/85ad9e375434906e2388dd6512ee8a7c.jpg?v=1772777883')}
 .slide-bg-2{background-image:url('https://cdn.shopify.com/s/files/1/0577/1939/0270/files/cce8cb5eca939ec55fba01beee482daa.jpg?v=1772777883')}
 .slide-bg-3{background-image:url('https://cdn.shopify.com/s/files/1/0577/1939/0270/files/a53c309f6ead90487e1251e48860ceab.jpg?v=1772777883')}
-.hero-banner{height:70vh;min-height:400px;cursor:auto}
+.hero-banner{aspect-ratio:16/9;height:auto;min-height:0;cursor:auto}
 .banner-cursor{display:none!important}
 .slide-title{font-size:28px}.slide-desc{font-size:14px}
-.slide-content{max-width:280px}
-.slide-content.content-right{right:5%}.slide-content.content-left{left:5%}
+.slide-content,.slide-content.content-left,.slide-content.content-right{top:auto;bottom:14%;left:50%;right:auto;transform:translateX(-50%);max-width:220px;text-align:center}
 .slide-cta{padding:12px 30px;font-size:11px}
 .banner-playpause{width:34px;height:34px;right:16px;bottom:16px}
 .banner-progress{bottom:20px}.progress-bar{width:36px}
