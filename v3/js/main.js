@@ -504,6 +504,17 @@ class ReelsSection {
         this.track.addEventListener('click', e => {
             const card = e.target.closest('.reel-card');
             if (!card || this.jumping) return;
+            // Mute toggle: don't propagate to card activation / modal
+            if (e.target.closest('.reel-mute-icon')) {
+                e.stopPropagation();
+                const v = card.querySelector('video');
+                if (v) {
+                    v.muted = !v.muted;
+                    if (!v.muted) v.play().catch(() => {});
+                    this.setMuteIcon(card, v.muted);
+                }
+                return;
+            }
             const di = parseInt(card.dataset.display);
             if (di !== this.displayIdx) {
                 this.displayIdx = di;
@@ -513,6 +524,14 @@ class ReelsSection {
             }
             this.openModal(this.activeIdx);
         });
+    }
+
+    setMuteIcon(card, muted) {
+        const btn = card.querySelector('.reel-mute-icon');
+        if (!btn) return;
+        btn.innerHTML = muted
+            ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`
+            : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
     }
 
     scrollToDisplay(di, animate) {
@@ -542,9 +561,9 @@ class ReelsSection {
         document.getElementById('reelsActiveProduct').innerHTML = `<div class="reel-product-card"><div class="reel-prod-thumb" style="background:${r.product.bg}"></div><div class="reel-prod-detail"><p class="reel-prod-name">${r.product.name}</p><p class="reel-prod-price">$${r.product.price}</p></div></div>`;
         document.querySelectorAll('.reels-dot').forEach((d, i) => d.classList.toggle('active', i === this.activeIdx));
         this.scrollToDisplay(this.displayIdx, true);
-        // Play/pause videos — only active card plays
-        if (this.prevDisplayIdx != null) { const pv = this.cards[this.prevDisplayIdx]; if(pv){const v=pv.querySelector('video');if(v)v.pause();} }
-        const ac = this.cards[this.displayIdx]; if(ac){const v=ac.querySelector('video');if(v){v.currentTime=0;v.play().catch(()=>{});}}
+        // Play/pause videos — only active card plays; reset to muted when switching
+        if (this.prevDisplayIdx != null) { const pv = this.cards[this.prevDisplayIdx]; if(pv){const v=pv.querySelector('video');if(v){v.pause();v.muted=true;this.setMuteIcon(pv,true);}} }
+        const ac = this.cards[this.displayIdx]; if(ac){const v=ac.querySelector('video');if(v){v.currentTime=0;v.muted=true;v.play().catch(()=>{});this.setMuteIcon(ac,true);}}
         this.prevDisplayIdx = this.displayIdx;
         // Jump back to middle set after transition if outside
         if (this.displayIdx < this.setSize || this.displayIdx >= this.setSize * 2) {
