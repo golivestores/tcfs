@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new CollectionSection();
     new ReelsSection();
     new RecommendSection();
+    new QuickViewModal();
     initAnnouncementBar();
     initMegaMenu();
     initHeaderScroll();
@@ -812,3 +813,120 @@ class RecommendSection {
 }
 
 
+
+/* ============================================
+   Quick View Modal
+   ============================================ */
+class QuickViewModal {
+    constructor() {
+        this.modal = document.getElementById('quickViewModal');
+        if (!this.modal) return;
+        this.elName = document.getElementById('qvName');
+        this.elPrice = document.getElementById('qvPrice');
+        this.elImage = document.getElementById('qvImage');
+        this.elOptions = document.getElementById('qvOptions');
+        this.elVariants = document.getElementById('qvVariants');
+        this.elQty = document.getElementById('qvQty');
+        this.images = [];
+        this.variantNames = [];
+        this.idx = 0;
+        this.qty = 1;
+        this.bind();
+    }
+
+    bind() {
+        this.modal.querySelectorAll('[data-qv-close]').forEach(el => el.addEventListener('click', () => this.close()));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && this.modal.classList.contains('open')) this.close(); });
+        this.modal.querySelector('.qv-prev').addEventListener('click', () => this.go(-1));
+        this.modal.querySelector('.qv-next').addEventListener('click', () => this.go(1));
+        this.modal.querySelector('.qv-qty-dec').addEventListener('click', () => this.setQty(this.qty - 1));
+        this.modal.querySelector('.qv-qty-inc').addEventListener('click', () => this.setQty(this.qty + 1));
+        this.modal.querySelector('#qvAdd').addEventListener('click', () => {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) cartCount.textContent = String((parseInt(cartCount.textContent) || 0) + this.qty);
+            this.close();
+        });
+        document.addEventListener('click', e => {
+            if (this.modal.contains(e.target)) return;
+            const card = e.target.closest('.product-card');
+            if (!card) return;
+            const addBtn = e.target.closest('.product-add-to-cart');
+            const isInteractive = e.target.closest('.swatch,.swatch-more,.product-img-next,.product-quick-view,a,button');
+            const isMobile = window.innerWidth <= 768;
+            if (addBtn || (isMobile && !isInteractive)) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.open(card);
+            }
+        });
+    }
+
+    open(card) {
+        const name = (card.querySelector('.name-base')?.textContent || '').trim();
+        const priceHTML = card.querySelector('.product-pricing')?.innerHTML || '';
+        const imgEls = [...card.querySelectorAll('.product-img img')];
+        this.images = imgEls.map(i => i.src);
+        if (!this.images.length) {
+            const bg = card.querySelector('.product-image-area');
+            if (bg) this.images = [bg.querySelector('img')?.src].filter(Boolean);
+        }
+        const activeIdx = [...card.querySelectorAll('.product-img')].findIndex(x => x.classList.contains('active'));
+        this.idx = Math.max(0, activeIdx);
+        const swatches = [...card.querySelectorAll('.swatch')];
+        this.variantNames = swatches.map((s, i) => s.dataset.name || s.title || `選項 ${i + 1}`);
+
+        this.elName.textContent = name;
+        this.elPrice.innerHTML = priceHTML;
+        if (this.variantNames.length > 1) {
+            this.elOptions.hidden = false;
+            this.elVariants.innerHTML = this.variantNames.map((n, i) =>
+                `<button class="qv-variant-btn${i === this.idx ? ' active' : ''}" data-i="${i}">${n}</button>`
+            ).join('');
+            this.elVariants.querySelectorAll('.qv-variant-btn').forEach(btn => {
+                btn.addEventListener('click', () => this.selectVariant(parseInt(btn.dataset.i)));
+            });
+        } else {
+            this.elOptions.hidden = true;
+        }
+        this.qty = 1;
+        this.elQty.textContent = '1';
+        this.updateImage();
+        this.modal.classList.add('open');
+        this.modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.modal.classList.remove('open');
+        this.modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    go(d) {
+        if (!this.images.length) return;
+        this.idx = (this.idx + d + this.images.length) % this.images.length;
+        this.updateImage();
+        this.syncVariantBtns();
+    }
+
+    selectVariant(i) {
+        this.idx = Math.min(i, this.images.length - 1);
+        this.updateImage();
+        this.syncVariantBtns();
+    }
+
+    syncVariantBtns() {
+        this.elVariants.querySelectorAll('.qv-variant-btn').forEach((b, j) => {
+            b.classList.toggle('active', j === this.idx);
+        });
+    }
+
+    setQty(n) {
+        this.qty = Math.max(1, Math.min(99, n));
+        this.elQty.textContent = String(this.qty);
+    }
+
+    updateImage() {
+        if (this.images[this.idx]) this.elImage.src = this.images[this.idx];
+    }
+}

@@ -486,6 +486,44 @@
         </div>
     </footer>
 
+    <!-- Quick View 彈窗 -->
+    <div class="qv-modal" id="quickViewModal" aria-hidden="true">
+        <div class="qv-overlay" data-qv-close></div>
+        <div class="qv-content">
+            <button class="qv-close" data-qv-close aria-label="關閉">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="qv-gallery">
+                <button class="qv-arrow qv-prev" aria-label="上一張"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <img class="qv-image" id="qvImage" alt="">
+                <button class="qv-arrow qv-next" aria-label="下一張"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+            </div>
+            <div class="qv-info">
+                <h2 class="qv-name" id="qvName"></h2>
+                <div class="qv-price" id="qvPrice"></div>
+                <p class="qv-shipping">運費將於結帳時計算</p>
+                <div class="qv-options" id="qvOptions" hidden>
+                    <p class="qv-option-label">OPTION</p>
+                    <div class="qv-variants" id="qvVariants"></div>
+                </div>
+                <div class="qv-actions">
+                    <div class="qv-qty">
+                        <button class="qv-qty-btn qv-qty-dec" aria-label="減少">−</button>
+                        <span class="qv-qty-val" id="qvQty">1</span>
+                        <button class="qv-qty-btn qv-qty-inc" aria-label="增加">+</button>
+                    </div>
+                    <button class="qv-add-btn" id="qvAdd">加入購物車</button>
+                </div>
+                <details class="qv-details">
+                    <summary>產品描述</summary>
+                    <p>來自韓國的明星彩妝品牌 TOO COOL FOR SCHOOL，融合藝術與美學，溫和養護，綻放自信光彩。</p>
+                </details>
+                <a href="#" class="qv-view-full">→ 查看完整詳情</a>
+                <div class="qv-share">分享</div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>
