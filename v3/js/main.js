@@ -674,13 +674,18 @@ class ReelsSection {
     tickProgress() {
         const elapsed = Date.now() - this.playStart;
         const pct = Math.min(elapsed / this.currentDur, 1);
+        const singleBar = document.body.classList.contains('page-product');
         // Update progress bars
         if (this.pbarFills) {
-            this.pbarFills.forEach((f, i) => {
-                if (i < this.modalIdx) f.style.width = '100%';
-                else if (i === this.modalIdx) f.style.width = `${pct * 100}%`;
-                else f.style.width = '0';
-            });
+            if (singleBar) {
+                if (this.pbarFills[0]) this.pbarFills[0].style.width = `${pct * 100}%`;
+            } else {
+                this.pbarFills.forEach((f, i) => {
+                    if (i < this.modalIdx) f.style.width = '100%';
+                    else if (i === this.modalIdx) f.style.width = `${pct * 100}%`;
+                    else f.style.width = '0';
+                });
+            }
         }
         if (pct >= 1) { this.advanceModal(1); return; }
         this.progressRaf = requestAnimationFrame(() => this.tickProgress());
