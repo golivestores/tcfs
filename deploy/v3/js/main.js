@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new CollectionSection();
     new ReelsSection();
     new RecommendSection();
+    new QuickViewModal();
     initAnnouncementBar();
     initMegaMenu();
     initHeaderScroll();
@@ -408,8 +409,8 @@ class CollectionSection {
         const imgs=p.variants.map((v,i)=>`<div class="product-img${i===0?' active':''}" data-variant="${i}"><img src="${v.img}" alt="${v.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>`).join('');
         let badges='';if(p.isSet)badges=`<div class="product-badges"><img class="badge-gift-wrap" src="${awardLogos[idx%2]}" alt="award"><div class="badge-tags"><span class="badge-tag badge-customizable">可自選搭配</span><span class="badge-tag badge-value">原價 $${p.value}</span></div></div>`;
         const price=p.salePrice?`<span class="price-original">$${p.originalPrice.toFixed(2)}</span><span class="price-sale">$${p.salePrice.toFixed(2)}</span>`:`<span class="price-current">$${p.originalPrice.toFixed(2)}</span>`;
-        const mx=p.maxSwatches||p.variants.length,vis=p.variants.slice(0,mx),ext=p.variants.length-mx;
-        const sw=vis.map((v,i)=>`<button class="swatch${i===0?' active':''}" data-variant="${i}" data-name="${v.name}" style="background-color:${v.swatch}" title="${v.name}"></button>`).join('')+(ext>0?`<span class="swatch-more">+${ext}</span>`:'');
+        const mx=p.maxSwatches||5,vis=p.variants.slice(0,mx),ext=p.variants.length-vis.length;
+        const sw=vis.map((v,i)=>`<button class="swatch${i===0?' active':''}" data-variant="${i}" data-name="${v.name}" style="background-color:${v.swatch}" title="${v.name}"></button>`).join('')+(ext>0?`<span class="swatch-more">+${ext}more</span>`:'');
         const vl=p.isSet?'':`\u2013 ${p.variants[0].name}`;
         return `<div class="product-card" data-product="${idx}"><div class="product-image-area">${imgs}${badges}<button class="product-quick-view" aria-label="快速查看"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button><button class="product-img-next" aria-label="下一張"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button><div class="product-add-to-cart">加入購物車</div></div><div class="product-info"><h3 class="product-name"><span class="name-base">${p.name}</span><span class="name-variant"> ${vl}</span></h3><div class="product-pricing">${price}</div><div class="variant-swatches">${sw}</div></div></div>`;
     }
@@ -419,7 +420,8 @@ class CollectionSection {
     updateTrackPosition(){if(!this.cards||!this.cards.length)return;this.track.style.transform=`translateX(-${this.currentOffset*(this.cards[0].offsetWidth+this.gap)}px)`}
     updateArrows(){const p=document.querySelector('.col-arrow-prev'),n=document.querySelector('.col-arrow-next');if(!p)return;p.classList.toggle('disabled',this.currentOffset<=0);n.classList.toggle('disabled',this.currentOffset>=this.maxOffset)}
     setupInteractions(){
-        this.track.querySelectorAll('.swatch').forEach(s=>s.addEventListener('mouseenter',()=>{const c=s.closest('.product-card'),vi=s.dataset.variant,nm=s.dataset.name;c.querySelectorAll('.swatch').forEach(x=>x.classList.remove('active'));s.classList.add('active');c.querySelectorAll('.product-img').forEach(x=>x.classList.remove('active'));const t=c.querySelector(`.product-img[data-variant="${vi}"]`);if(t)t.classList.add('active');c.querySelector('.name-variant').textContent=` \u2013 ${nm}`}));
+        const switchVariant=s=>{const c=s.closest('.product-card'),vi=s.dataset.variant,nm=s.dataset.name;c.querySelectorAll('.swatch').forEach(x=>x.classList.remove('active'));s.classList.add('active');c.querySelectorAll('.product-img').forEach(x=>x.classList.remove('active'));const t=c.querySelector(`.product-img[data-variant="${vi}"]`);if(t)t.classList.add('active');const nv=c.querySelector('.name-variant');if(nv)nv.textContent=` \u2013 ${nm}`};
+        this.track.querySelectorAll('.swatch').forEach(s=>{s.addEventListener('mouseenter',()=>switchVariant(s));s.addEventListener('click',e=>{e.stopPropagation();switchVariant(s)});});
         this.track.querySelectorAll('.product-img-next').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const c=b.closest('.product-card'),imgs=[...c.querySelectorAll('.product-img')],sws=[...c.querySelectorAll('.swatch')],ai=imgs.findIndex(x=>x.classList.contains('active')),ni=(ai+1)%imgs.length;imgs.forEach(x=>x.classList.remove('active'));imgs[ni].classList.add('active');sws.forEach(x=>x.classList.remove('active'));if(sws[ni])sws[ni].classList.add('active');const pi=parseInt(c.dataset.product),v=this.products[pi].variants[ni];if(v)c.querySelector('.name-variant').textContent=` \u2013 ${v.name}`}));
     }
 }
@@ -432,13 +434,13 @@ class ReelsSection {
         this.track = document.getElementById('reelsTrack');
         if (!this.track) return;
         this.data = [
-            { bg:'linear-gradient(180deg,#f0d5cc,#e0b8a8 40%,#dab0a0)',title:'甜心小熊系列\n浮雕腮紅',shade:'C3 甜心',product:{name:'甜心小熊六色彩妝盤',price:35,bg:'#f0d0c8'},dur:10000,video:'https://cdn.shopify.com/videos/c/o/v/6af6f93c860147b485384c8eeb5e724b.mp4'},
-            { bg:'linear-gradient(180deg,#e8d0c8,#d0b0a0 40%,#c09888)',title:'兔兔花園系列\n雲朵唇霜',shade:'B03 藕粉夢幻',product:{name:'兔兔花園雲朵唇霜',price:20,bg:'#e8c0c4'},dur:8000,video:'https://cdn.shopify.com/videos/c/o/v/f7ce230b8ee74a66a68fc38ff634ee42.mp4'},
-            { bg:'linear-gradient(180deg,#f5e8e0,#e0c8b8 40%,#d0b0a0)',title:'TOO COOL FOR SCHOOL\n遮瑕盤',shade:'自然亮白',product:{name:'藝術課堂遮瑕盤',price:28,bg:'#f0e0d4'},dur:12000,video:'https://cdn.shopify.com/videos/c/o/v/546a22afd66642b0a2763bc0f655ec6c.mp4'},
-            { bg:'linear-gradient(180deg,#f8e8e0,#e8c8bc 40%,#d8b0a4)',title:'甜心小熊系列\n緞面腮紅',shade:'C3 玫瑰情歌',product:{name:'甜心小熊六色彩妝盤',price:35,bg:'#f0d0c8'},dur:10000,video:'https://cdn.shopify.com/videos/c/o/v/5c4b48fde68644318d9d59598f23b9fe.mp4'},
-            { bg:'linear-gradient(180deg,#f0dcd8,#e0c0b8 40%,#d0a8a0)',title:'甜心小熊系列\n果凍唇釉',shade:'JE04 緞帶粉',product:{name:'甜心小熊果凍唇釉',price:18,bg:'#f0c8c8'},dur:9000,video:'https://cdn.shopify.com/videos/c/o/v/d8357ad4f7ef4bca848db8905739063f.mp4'},
-            { bg:'linear-gradient(180deg,#e8d8d0,#d8c0b4 40%,#c8a89c)',title:'兔兔花園系列\n浮雕腮紅',shade:'V06 鬱金香',product:{name:'兔兔花園浮雕腮紅',price:26,bg:'#e8c8c0'},dur:11000,video:'https://cdn.shopify.com/videos/c/o/v/6af6f93c860147b485384c8eeb5e724b.mp4'},
-            { bg:'linear-gradient(180deg,#f5d8d8,#e0b0b8 40%,#d498a0)',title:'兔兔花園系列\n手持鏡',shade:'粉色緞帶',product:{name:'兔兔花園精緻手持鏡',price:22,bg:'#f0c0c8'},dur:8000,video:'https://cdn.shopify.com/videos/c/o/v/f7ce230b8ee74a66a68fc38ff634ee42.mp4'},
+            { bg:'linear-gradient(180deg,#f0d5cc,#e0b8a8 40%,#dab0a0)',title:'甜心小熊系列\n浮雕腮紅',shade:'C3 甜心',product:{name:'甜心小熊六色彩妝盤',price:35,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/77f0ef16e0fbc52baa3dea6f4a2e4a0e.jpg?v=1772784822'},dur:10000,video:'https://cdn.shopify.com/videos/c/o/v/6af6f93c860147b485384c8eeb5e724b.mp4'},
+            { bg:'linear-gradient(180deg,#e8d0c8,#d0b0a0 40%,#c09888)',title:'兔兔花園系列\n雲朵唇霜',shade:'B03 藕粉夢幻',product:{name:'兔兔花園雲朵唇霜',price:20,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/d7d786ffc26a7e958be6a71929934d0b.jpg?v=1772784822'},dur:8000,video:'https://cdn.shopify.com/videos/c/o/v/f7ce230b8ee74a66a68fc38ff634ee42.mp4'},
+            { bg:'linear-gradient(180deg,#f5e8e0,#e0c8b8 40%,#d0b0a0)',title:'TOO COOL FOR SCHOOL\n遮瑕盤',shade:'自然亮白',product:{name:'藝術課堂遮瑕盤',price:28,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/484291c3591841355507e3c3352a3e2b.jpg?v=1772784822'},dur:12000,video:'https://cdn.shopify.com/videos/c/o/v/546a22afd66642b0a2763bc0f655ec6c.mp4'},
+            { bg:'linear-gradient(180deg,#f8e8e0,#e8c8bc 40%,#d8b0a4)',title:'甜心小熊系列\n緞面腮紅',shade:'C3 玫瑰情歌',product:{name:'甜心小熊六色彩妝盤',price:35,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/2df6780054db4d9b458828e39609f31c.jpg?v=1772784822'},dur:10000,video:'https://cdn.shopify.com/videos/c/o/v/5c4b48fde68644318d9d59598f23b9fe.mp4'},
+            { bg:'linear-gradient(180deg,#f0dcd8,#e0c0b8 40%,#d0a8a0)',title:'甜心小熊系列\n果凍唇釉',shade:'JE04 緞帶粉',product:{name:'甜心小熊果凍唇釉',price:18,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/111b02976f89989ea9015e8eb99bb940.jpg?v=1772784822'},dur:9000,video:'https://cdn.shopify.com/videos/c/o/v/d8357ad4f7ef4bca848db8905739063f.mp4'},
+            { bg:'linear-gradient(180deg,#e8d8d0,#d8c0b4 40%,#c8a89c)',title:'兔兔花園系列\n浮雕腮紅',shade:'V06 鬱金香',product:{name:'兔兔花園浮雕腮紅',price:26,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/076dcebd67088d85d2eb403f65020479.jpg?v=1772784822'},dur:11000,video:'https://cdn.shopify.com/videos/c/o/v/6af6f93c860147b485384c8eeb5e724b.mp4'},
+            { bg:'linear-gradient(180deg,#f5d8d8,#e0b0b8 40%,#d498a0)',title:'兔兔花園系列\n手持鏡',shade:'粉色緞帶',product:{name:'兔兔花園精緻手持鏡',price:22,img:'https://cdn.shopify.com/s/files/1/0577/1939/0270/files/77f0ef16e0fbc52baa3dea6f4a2e4a0e.jpg?v=1772784822'},dur:8000,video:'https://cdn.shopify.com/videos/c/o/v/f7ce230b8ee74a66a68fc38ff634ee42.mp4'},
         ];
         this.setSize = this.data.length;
         this.activeIdx = 3;
@@ -502,6 +504,17 @@ class ReelsSection {
         this.track.addEventListener('click', e => {
             const card = e.target.closest('.reel-card');
             if (!card || this.jumping) return;
+            // Mute toggle: don't propagate to card activation / modal
+            if (e.target.closest('.reel-mute-icon')) {
+                e.stopPropagation();
+                const v = card.querySelector('video');
+                if (v) {
+                    v.muted = !v.muted;
+                    if (!v.muted) v.play().catch(() => {});
+                    this.setMuteIcon(card, v.muted);
+                }
+                return;
+            }
             const di = parseInt(card.dataset.display);
             if (di !== this.displayIdx) {
                 this.displayIdx = di;
@@ -511,6 +524,14 @@ class ReelsSection {
             }
             this.openModal(this.activeIdx);
         });
+    }
+
+    setMuteIcon(card, muted) {
+        const btn = card.querySelector('.reel-mute-icon');
+        if (!btn) return;
+        btn.innerHTML = muted
+            ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`
+            : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
     }
 
     scrollToDisplay(di, animate) {
@@ -537,12 +558,12 @@ class ReelsSection {
     updateActive() {
         this.cards.forEach((c, i) => c.classList.toggle('active', i === this.displayIdx));
         const r = this.data[this.activeIdx];
-        document.getElementById('reelsActiveProduct').innerHTML = `<div class="reel-product-card"><div class="reel-prod-thumb" style="background:${r.product.bg}"></div><div class="reel-prod-detail"><p class="reel-prod-name">${r.product.name}</p><p class="reel-prod-price">$${r.product.price}</p></div></div>`;
+        document.getElementById('reelsActiveProduct').innerHTML = `<div class="reel-product-card"><div class="reel-prod-thumb" style="background-image:url('${r.product.img}')"></div><div class="reel-prod-detail"><p class="reel-prod-name">${r.product.name}</p><p class="reel-prod-price">$${r.product.price}</p></div></div>`;
         document.querySelectorAll('.reels-dot').forEach((d, i) => d.classList.toggle('active', i === this.activeIdx));
         this.scrollToDisplay(this.displayIdx, true);
-        // Play/pause videos — only active card plays
-        if (this.prevDisplayIdx != null) { const pv = this.cards[this.prevDisplayIdx]; if(pv){const v=pv.querySelector('video');if(v)v.pause();} }
-        const ac = this.cards[this.displayIdx]; if(ac){const v=ac.querySelector('video');if(v){v.currentTime=0;v.play().catch(()=>{});}}
+        // Play/pause videos — only active card plays; reset to muted when switching
+        if (this.prevDisplayIdx != null) { const pv = this.cards[this.prevDisplayIdx]; if(pv){const v=pv.querySelector('video');if(v){v.pause();v.muted=true;this.setMuteIcon(pv,true);}} }
+        const ac = this.cards[this.displayIdx]; if(ac){const v=ac.querySelector('video');if(v){v.currentTime=0;v.muted=true;v.play().catch(()=>{});this.setMuteIcon(ac,true);}}
         this.prevDisplayIdx = this.displayIdx;
         // Jump back to middle set after transition if outside
         if (this.displayIdx < this.setSize || this.displayIdx >= this.setSize * 2) {
@@ -564,6 +585,20 @@ class ReelsSection {
         document.getElementById('vmodalMute').addEventListener('click', () => this.toggleMute());
         document.getElementById('vmodalUp').addEventListener('click', () => this.advanceModal(-1));
         document.getElementById('vmodalDown').addEventListener('click', () => this.advanceModal(1));
+        // Modal product bar "+" button → navigate to product page
+        const addBtn = document.querySelector('.vmpb-add');
+        if (addBtn) addBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            const r = this.data[this.modalIdx];
+            window.location.href = r?.product?.url || '#';
+        });
+        // Reel active product card (under carousel) → navigate to product page
+        document.getElementById('reelsActiveProduct').addEventListener('click', e => {
+            const card = e.target.closest('.reel-product-card');
+            if (!card) return;
+            const r = this.data[this.activeIdx];
+            window.location.href = r?.product?.url || '#';
+        });
     }
 
     openModal(idx) {
@@ -600,14 +635,16 @@ class ReelsSection {
         vc.style.background = r.bg;
         vc.innerHTML = `<video src="${r.video}" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`;
         this.modalVid = vc.querySelector('video');
+        this.modalVid.muted = this.isMuted;
         this.modalVid.play().catch(()=>{});
+        this.updateMuteIcons();
         // Text
         const tt = document.getElementById('vmodalText');
         tt.querySelector('.vmt-title').innerHTML = r.title.replace(/\n/g, '<br>');
         tt.querySelector('.vmt-shade').textContent = r.shade;
         // Product bar
         const pb = document.getElementById('vmodalProd');
-        pb.querySelector('.vmpb-thumb').style.background = r.product.bg;
+        pb.querySelector('.vmpb-thumb').style.cssText = `background:url('${r.product.img}') center/cover no-repeat,#f5f5f5`;
         pb.querySelector('.vmpb-name').textContent = r.product.name;
         pb.querySelector('.vmpb-price').textContent = `$${r.product.price}`;
         // Progress bars
@@ -637,19 +674,45 @@ class ReelsSection {
     tickProgress() {
         const elapsed = Date.now() - this.playStart;
         const pct = Math.min(elapsed / this.currentDur, 1);
+        const singleBar = document.body.classList.contains('page-product');
         // Update progress bars
         if (this.pbarFills) {
-            this.pbarFills.forEach((f, i) => {
-                if (i < this.modalIdx) f.style.width = '100%';
-                else if (i === this.modalIdx) f.style.width = `${pct * 100}%`;
-                else f.style.width = '0';
-            });
+            if (singleBar) {
+                if (this.pbarFills[0]) this.pbarFills[0].style.width = `${pct * 100}%`;
+            } else {
+                this.pbarFills.forEach((f, i) => {
+                    if (i < this.modalIdx) f.style.width = '100%';
+                    else if (i === this.modalIdx) f.style.width = `${pct * 100}%`;
+                    else f.style.width = '0';
+                });
+            }
         }
         if (pct >= 1) { this.advanceModal(1); return; }
         this.progressRaf = requestAnimationFrame(() => this.tickProgress());
     }
 
-    toggleMute() { this.isMuted = !this.isMuted; }
+    toggleMute() {
+        this.isMuted = !this.isMuted;
+        [this.modalVid, this.miniVid].forEach(v => {
+            if (!v) return;
+            v.muted = this.isMuted;
+            if (!this.isMuted) v.play().catch(() => {});
+        });
+        this.updateMuteIcons();
+    }
+
+    muteSvg(size, muted) {
+        return muted
+            ? `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`
+            : `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
+    }
+
+    updateMuteIcons() {
+        const modalBtn = document.getElementById('vmodalMute');
+        const miniBtn = document.getElementById('miniMute');
+        if (modalBtn) modalBtn.innerHTML = this.muteSvg(18, this.isMuted);
+        if (miniBtn) miniBtn.innerHTML = this.muteSvg(14, this.isMuted);
+    }
 
     /* --- 迷你播放器 --- */
     setupMini() {
@@ -677,9 +740,11 @@ class ReelsSection {
         mc.style.background = r.bg;
         mc.innerHTML = `<video src="${r.video}" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>`;
         this.miniVid = mc.querySelector('video');
+        this.miniVid.muted = this.isMuted;
         this.miniVid.play().catch(()=>{});
+        this.updateMuteIcons();
         const pb = document.getElementById('miniProd');
-        pb.querySelector('.mnpb-thumb').style.background = r.product.bg;
+        pb.querySelector('.mnpb-thumb').style.cssText = `background:url('${r.product.img}') center/cover no-repeat,#f5f5f5`;
         pb.querySelector('.mnpb-name').textContent = r.product.name;
         pb.querySelector('.mnpb-price').textContent = `$${r.product.price}`;
         document.getElementById('miniDots').innerHTML = this.data.map((_, i) => `<span class="mini-dot${i===this.modalIdx?' active':''}"></span>`).join('');
@@ -754,22 +819,25 @@ class RecommendSection {
             let badges = '';
             if (hasBadges) badges = `<div class="product-badges"><img class="badge-gift-wrap" src="${awardLogos[idx%2]}" alt="award"><div class="badge-tags">${d.badges.map(b=>`<span class="badge-tag badge-customizable">${b}</span>`).join('')}${d.originalTag?`<span class="badge-tag badge-value">${d.originalTag}</span>`:''}</div></div>`;
             const price = `<span class="price-original">${d.oldPrice}</span><span class="price-sale">${d.newPrice}</span>`;
-            const sw = d.swatches.map((s,i) => `<button class="swatch${i===0?' active':''}" data-variant="${i}" style="background-color:${s.color}" title="${d.name}"></button>`).join('');
+            const visSw = d.swatches.slice(0,5), extSw = d.swatches.length - visSw.length;
+            const sw = visSw.map((s,i) => `<button class="swatch${i===0?' active':''}" data-variant="${i}" style="background-color:${s.color}" title="${d.name}"></button>`).join('') + (extSw>0?`<span class="swatch-more">+${extSw}more</span>`:'');
             return `<div class="product-card" data-product="${idx}"><div class="product-image-area">${imgs}${badges}<button class="product-quick-view" aria-label="快速查看"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button><div class="product-add-to-cart">加入購物車</div></div><div class="product-info"><h3 class="product-name"><span class="name-base">${d.name}</span></h3><div class="product-pricing">${price}</div><div class="variant-swatches">${sw}</div></div></div>`;
         }).join('');
         this.setupSwatches();
     }
 
     setupSwatches() {
+        const switchVariant = s => {
+            const card = s.closest('.product-card');
+            card.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
+            s.classList.add('active');
+            card.querySelectorAll('.product-img').forEach(x => x.classList.remove('active'));
+            const t = card.querySelector(`.product-img[data-variant="${s.dataset.variant}"]`);
+            if (t) t.classList.add('active');
+        };
         this.track.querySelectorAll('.swatch').forEach(s => {
-            s.addEventListener('mouseenter', () => {
-                const card = s.closest('.product-card');
-                card.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
-                s.classList.add('active');
-                card.querySelectorAll('.product-img').forEach(x => x.classList.remove('active'));
-                const t = card.querySelector(`.product-img[data-variant="${s.dataset.variant}"]`);
-                if (t) t.classList.add('active');
-            });
+            s.addEventListener('mouseenter', () => switchVariant(s));
+            s.addEventListener('click', e => { e.stopPropagation(); switchVariant(s); });
         });
     }
 
@@ -808,3 +876,129 @@ class RecommendSection {
 }
 
 
+
+/* ============================================
+   Quick View Modal
+   ============================================ */
+class QuickViewModal {
+    constructor() {
+        this.modal = document.getElementById('quickViewModal');
+        if (!this.modal) return;
+        this.elName = document.getElementById('qvName');
+        this.elPrice = document.getElementById('qvPrice');
+        this.elImage = document.getElementById('qvImage');
+        this.elOptions = document.getElementById('qvOptions');
+        this.elVariants = document.getElementById('qvVariants');
+        this.elQty = document.getElementById('qvQty');
+        this.images = [];
+        this.variantNames = [];
+        this.idx = 0;
+        this.qty = 1;
+        this.bind();
+    }
+
+    bind() {
+        this.modal.querySelectorAll('[data-qv-close]').forEach(el => el.addEventListener('click', () => this.close()));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && this.modal.classList.contains('open')) this.close(); });
+        this.modal.querySelector('.qv-prev').addEventListener('click', () => this.go(-1));
+        this.modal.querySelector('.qv-next').addEventListener('click', () => this.go(1));
+        this.modal.querySelector('.qv-qty-dec').addEventListener('click', () => this.setQty(this.qty - 1));
+        this.modal.querySelector('.qv-qty-inc').addEventListener('click', () => this.setQty(this.qty + 1));
+        this.modal.querySelector('#qvAdd').addEventListener('click', () => {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) cartCount.textContent = String((parseInt(cartCount.textContent) || 0) + this.qty);
+            this.close();
+        });
+        document.addEventListener('click', e => {
+            if (this.modal.contains(e.target)) return;
+            const card = e.target.closest('.product-card');
+            if (!card) return;
+            const addBtn = e.target.closest('.product-add-to-cart');
+            if (addBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.open(card);
+                return;
+            }
+            if (e.target.closest('.swatch,.swatch-more,.product-img-next,a,button')) return;
+            const imgArea = e.target.closest('.product-image-area');
+            const info = e.target.closest('.product-info');
+            if (imgArea || info) {
+                e.preventDefault();
+                window.location.href = card.dataset.productUrl || '#';
+            }
+        });
+    }
+
+    open(card) {
+        const name = (card.querySelector('.name-base')?.textContent || '').trim();
+        const priceHTML = card.querySelector('.product-pricing')?.innerHTML || '';
+        const imgEls = [...card.querySelectorAll('.product-img img')];
+        this.images = imgEls.map(i => i.src);
+        if (!this.images.length) {
+            const bg = card.querySelector('.product-image-area');
+            if (bg) this.images = [bg.querySelector('img')?.src].filter(Boolean);
+        }
+        const activeIdx = [...card.querySelectorAll('.product-img')].findIndex(x => x.classList.contains('active'));
+        this.idx = Math.max(0, activeIdx);
+        const swatches = [...card.querySelectorAll('.swatch')];
+        this.variantNames = swatches.map((s, i) => s.dataset.name || s.title || `選項 ${i + 1}`);
+
+        this.elName.textContent = name;
+        this.elPrice.innerHTML = priceHTML;
+        if (this.variantNames.length > 1) {
+            this.elOptions.hidden = false;
+            this.elVariants.innerHTML = this.variantNames.map((n, i) =>
+                `<button class="qv-variant-btn${i === this.idx ? ' active' : ''}" data-i="${i}">${n}</button>`
+            ).join('');
+            this.elVariants.querySelectorAll('.qv-variant-btn').forEach(btn => {
+                btn.addEventListener('click', () => this.selectVariant(parseInt(btn.dataset.i)));
+            });
+        } else {
+            this.elOptions.hidden = true;
+        }
+        this.qty = 1;
+        this.elQty.textContent = '1';
+        this.updateImage();
+        const url = card.dataset.productUrl || '#';
+        const viewFull = this.modal.querySelector('.qv-view-full');
+        if (viewFull) viewFull.href = url;
+        this.modal.classList.add('open');
+        this.modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.modal.classList.remove('open');
+        this.modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    go(d) {
+        if (!this.images.length) return;
+        this.idx = (this.idx + d + this.images.length) % this.images.length;
+        this.updateImage();
+        this.syncVariantBtns();
+    }
+
+    selectVariant(i) {
+        this.idx = Math.min(i, this.images.length - 1);
+        this.updateImage();
+        this.syncVariantBtns();
+    }
+
+    syncVariantBtns() {
+        this.elVariants.querySelectorAll('.qv-variant-btn').forEach((b, j) => {
+            b.classList.toggle('active', j === this.idx);
+        });
+    }
+
+    setQty(n) {
+        this.qty = Math.max(1, Math.min(99, n));
+        this.elQty.textContent = String(this.qty);
+    }
+
+    updateImage() {
+        if (this.images[this.idx]) this.elImage.src = this.images[this.idx];
+    }
+}
