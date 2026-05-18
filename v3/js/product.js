@@ -9,7 +9,27 @@ document.addEventListener('DOMContentLoaded', () => {
     initAccordions();
     initAddToCart();
     initStickyBarReveal();
+    initActionCarousel();
 });
+
+/* ===== 美妝實測 SEE IT IN ACTION 視頻輪播 ===== */
+function initActionCarousel() {
+    const track = document.getElementById('actionTrack');
+    const dots = document.querySelectorAll('#actionDots .pd-action-dot');
+    if (!track || !dots.length) return;
+    const slides = track.querySelectorAll('.pd-action-slide');
+    let current = 0;
+    const goTo = idx => {
+        current = idx;
+        track.style.transform = `translateX(-${idx * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        slides.forEach((s, i) => {
+            const v = s.querySelector('video');
+            if (v && i !== idx) { v.pause(); }
+        });
+    };
+    dots.forEach(d => d.addEventListener('click', () => goTo(parseInt(d.dataset.index))));
+}
 
 /* ===== 公告欄輪播（複用首頁邏輯） ===== */
 function initAnnouncementBar() {

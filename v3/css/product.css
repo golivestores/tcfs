@@ -560,6 +560,83 @@
 }
 
 /* =================================
+   美妝實測 影片輪播板塊 (SEE IT IN ACTION)
+   ================================= */
+.pd-action {
+    background: var(--bg);
+    padding: 70px 40px 80px;
+    text-align: center;
+}
+.pd-action-title {
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: -.3px;
+    color: var(--ink);
+    margin: 0 auto 36px;
+}
+.pd-action-viewport {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #000;
+}
+.pd-action-track {
+    display: flex;
+    transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+    will-change: transform;
+}
+.pd-action-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.pd-action-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+    display: block;
+}
+.pd-action-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+}
+.pd-action-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    background: #c9c4bd;
+    padding: 0;
+    cursor: pointer;
+    transition: background .25s, transform .25s;
+}
+.pd-action-dot:hover { background: #a39d95; }
+.pd-action-dot.active {
+    background: var(--ink);
+    transform: scale(1.15);
+}
+@media (max-width: 900px) {
+    .pd-action { padding: 50px 20px 60px; }
+    .pd-action-title { font-size: 26px; margin-bottom: 24px; }
+    .pd-action-dots { margin-top: 18px; }
+}
+@media (max-width: 560px) {
+    .pd-action { padding: 40px 16px 50px; }
+    .pd-action-title { font-size: 22px; }
+    .pd-action-slide { aspect-ratio: 4 / 3; }
+}
+
+/* =================================
    Bloom 全寬橫幅
    ================================= */
 .pd-bloom {

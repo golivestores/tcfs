@@ -268,23 +268,22 @@
             </div>
         </section>
 
-        <!-- 網紅推薦板塊 -->
-        <section class="bestsellers-section" id="bestsellersSection">
-            <h2 class="bestsellers-title">美妝實測</h2>
-            <div class="reels-carousel">
-                <div class="reels-viewport">
-                    <div class="reels-track" id="reelsTrack"></div>
+        <!-- ===== 美妝實測 影片輪播板塊 ===== -->
+        <section class="pd-action" id="actionSection">
+            <h2 class="pd-action-title">美妝實測</h2>
+            <div class="pd-action-viewport">
+                <div class="pd-action-track" id="actionTrack">
+                    <div class="pd-action-slide" data-index="0">
+                        <video src="video/lip-action-1.mp4" controls playsinline preload="metadata" poster=""></video>
+                    </div>
+                    <div class="pd-action-slide" data-index="1">
+                        <video src="video/lip-action-2.mp4" controls playsinline preload="metadata" poster=""></video>
+                    </div>
                 </div>
             </div>
-            <div class="reels-active-product" id="reelsActiveProduct"></div>
-            <div class="reels-dots" id="reelsDots"></div>
-            <div class="reels-nav">
-                <button class="reels-nav-btn" id="reelsNavPrev" aria-label="上一個">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </button>
-                <button class="reels-nav-btn" id="reelsNavNext" aria-label="下一個">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
+            <div class="pd-action-dots" id="actionDots">
+                <button class="pd-action-dot active" data-index="0" aria-label="影片 1"></button>
+                <button class="pd-action-dot" data-index="1" aria-label="影片 2"></button>
             </div>
         </section>
 
