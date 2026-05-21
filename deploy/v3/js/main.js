@@ -279,11 +279,18 @@ function initHeaderScroll() {
     const header = document.getElementById('siteHeader');
     const bar = document.getElementById('announcementBar');
     if (!header) return;
-    const barH = bar ? bar.offsetHeight : 0;
-    header.style.top = barH + 'px';
-    document.body.style.paddingTop = (barH + header.offsetHeight) + 'px';
+
+    /* 量一次 + 監聽 resize，避免 viewport 切換（含 devtools 行動版模擬）後 padding-top 仍停留在桌面尺寸 */
+    const apply = () => {
+        const barH = bar ? bar.offsetHeight : 0;
+        header.style.top = barH + 'px';
+        document.body.style.paddingTop = (barH + header.offsetHeight) + 'px';
+    };
+    apply();
+    window.addEventListener('resize', apply);
 
     let lastY = window.scrollY;
+    const barH = bar ? bar.offsetHeight : 0;
     const threshold = barH + header.offsetHeight;
 
     window.addEventListener('scroll', () => {
