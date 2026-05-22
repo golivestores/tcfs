@@ -374,6 +374,20 @@
             });
         })();
 
+        /* 色號 swatch 點擊篩選（互斥單選；再點同一個取消） */
+        (function () {
+            const swatches = document.querySelectorAll('.page-v2 .cp-swatch');
+            if (!swatches.length) return;
+            swatches.forEach(sw => {
+                sw.addEventListener('click', () => {
+                    const wasActive = sw.classList.contains('active');
+                    swatches.forEach(s => s.classList.remove('active'));
+                    if (!wasActive) sw.classList.add('active');
+                    document.dispatchEvent(new CustomEvent('cp:filter-change'));
+                });
+            });
+        })();
+
         /* 分類卡 carousel 箭頭（手機端） */
         (function () {
             const grid = document.querySelector('.page-v2 .cp-cat-grid');

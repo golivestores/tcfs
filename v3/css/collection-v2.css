@@ -147,6 +147,10 @@
     transform: scale(1.12);
     box-shadow: 0 0 0 2px #fff, 0 0 0 3px rgba(0, 0, 0, .35);
 }
+.page-v2 .cp-swatch.active {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #111;
+}
 
 /* ---- 分類 checkbox 列表 ---- */
 .page-v2 .cp-side-pills {
