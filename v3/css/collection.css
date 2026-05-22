@@ -431,3 +431,118 @@
     .cp-trust { gap: 14px 10px; }
     .cp-trust-item { padding: 4px 0; }
 }
+
+/* =====================================================
+   Hero Cards（覆寫式分類卡）— 替代舊 cp-hero 大圖
+   ===================================================== */
+.cp-hero-cards {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 40px 40px 56px;
+}
+.cp-cards-title {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 1.2;
+    color: #222;
+    margin: 0 0 28px;
+    letter-spacing: 1px;
+}
+.cp-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+.cp-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    background: #e8e2d8;
+}
+.cp-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.25, .46, .45, .94);
+}
+.cp-card:hover img { transform: scale(1.05); }
+
+.cp-card-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 22px 22px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .42) 100%);
+}
+.cp-card-title {
+    color: #fff;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: .5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+}
+.cp-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .85);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 30px;
+    letter-spacing: .3px;
+    transition: background .25s, color .25s, border-color .25s, transform .25s;
+}
+.cp-card-cta svg { display: block; }
+.cp-card:hover .cp-card-cta {
+    background: #fff;
+    color: #111;
+    border-color: #fff;
+    transform: translateX(3px);
+}
+
+/* Hero cards 響應式 */
+@media (max-width: 1100px) {
+    .cp-cards-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .cp-card { aspect-ratio: 3 / 4; }
+    .cp-card-title { font-size: 19px; }
+    .cp-card-cta { font-size: 11px; padding: 6px 12px; }
+}
+@media (max-width: 768px) {
+    .cp-hero-cards { padding: 24px 20px 32px; }
+    .cp-cards-title { font-size: 28px; margin-bottom: 18px; }
+    .cp-cards-grid {
+        display: flex;
+        grid-template-columns: none;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 20px;
+        padding: 0 20px;
+        margin: 0 -20px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .cp-cards-grid::-webkit-scrollbar { display: none; }
+    .cp-card {
+        flex: 0 0 78%;
+        scroll-snap-align: start;
+        aspect-ratio: 4 / 5;
+    }
+    .cp-card-overlay { padding: 18px 18px 16px; }
+    .cp-card-title { font-size: 18px; }
+}

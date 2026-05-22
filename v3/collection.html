@@ -86,24 +86,35 @@
 
     <main class="main-content collection-page">
 
-        <!-- ===== Collection Hero ===== -->
-        <section class="cp-hero">
-            <picture class="cp-hero-bg">
-                <source media="(max-width: 768px)" srcset="images/hp_banner_mobile.jpg">
-                <img src="images/hp_banner_1.webp" alt="" loading="eager">
-            </picture>
-            <div class="cp-hero-text">
-                <span class="cp-hero-label">DISCOVER THE COLLECTION</span>
-                <h1 class="cp-hero-title" id="cpHeroTitle">全部商品</h1>
-                <p class="cp-hero-sub">Where art meets beauty.</p>
-                <p class="cp-hero-desc" id="cpHeroDesc">融合首爾的細膩與紐約的叛逆，<br>每一件作品，皆是對美的自由想像。</p>
-                <div class="cp-hero-meta">
-                    <span class="cp-hero-count"><strong id="cpTotalCount">16</strong> 件商品</span>
-                    <span class="cp-hero-dot">·</span>
-                    <span class="cp-hero-tag">免運門檻 NT$1,500</span>
-                </div>
+        <!-- ===== Hero：標題 + 3 張覆寫式分類卡 ===== -->
+        <section class="cp-hero-cards">
+            <h1 class="cp-cards-title" id="cpHeroTitle">全部商品</h1>
+            <div class="cp-cards-grid">
+                <a class="cp-card" href="collection.html?cat=lips">
+                    <img src="images/cat-lips.jpg" alt="唇妝系列">
+                    <div class="cp-card-overlay">
+                        <h3 class="cp-card-title">唇妝系列</h3>
+                        <span class="cp-card-cta">了解更多 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    </div>
+                </a>
+                <a class="cp-card" href="collection.html?cat=face">
+                    <img src="images/cat-face.webp" alt="面部系列">
+                    <div class="cp-card-overlay">
+                        <h3 class="cp-card-title">面部系列</h3>
+                        <span class="cp-card-cta">了解更多 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    </div>
+                </a>
+                <a class="cp-card" href="collection.html?cat=eyes">
+                    <img src="images/cat-eyes.jpg" alt="眼妝系列">
+                    <div class="cp-card-overlay">
+                        <h3 class="cp-card-title">眼妝系列</h3>
+                        <span class="cp-card-cta">了解更多 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    </div>
+                </a>
             </div>
         </section>
+        <span id="cpHeroDesc" hidden></span>
+        <span id="cpTotalCount" hidden>16</span>
 
         <!-- ===== Toolbar：篩選 + 排序 ===== -->
         <section class="cp-toolbar">
