@@ -121,6 +121,10 @@
                     </div>
                 </a>
             </div>
+            <div class="cp-cat-arrows" aria-hidden="true">
+                <button class="cp-cat-arrow prev" type="button" aria-label="上一張"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button class="cp-cat-arrow next" type="button" aria-label="下一張"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+            </div>
         </section>
         <span id="cpTotalCount" hidden>16</span>
 
@@ -368,6 +372,27 @@
                 sb.dataset.open = open ? 'false' : 'true';
                 tg.setAttribute('aria-expanded', String(!open));
             });
+        })();
+
+        /* 分類卡 carousel 箭頭（手機端） */
+        (function () {
+            const grid = document.querySelector('.page-v2 .cp-cat-grid');
+            const prev = document.querySelector('.page-v2 .cp-cat-arrow.prev');
+            const next = document.querySelector('.page-v2 .cp-cat-arrow.next');
+            if (!grid || !prev || !next) return;
+            const step = () => {
+                const card = grid.querySelector('.cp-cat-card');
+                return card ? card.getBoundingClientRect().width + 12 : grid.clientWidth * 0.78;
+            };
+            prev.addEventListener('click', () => grid.scrollBy({ left: -step(), behavior: 'smooth' }));
+            next.addEventListener('click', () => grid.scrollBy({ left: step(), behavior: 'smooth' }));
+            const update = () => {
+                prev.toggleAttribute('disabled', grid.scrollLeft <= 2);
+                next.toggleAttribute('disabled', grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 2);
+            };
+            grid.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
         })();
     </script>
 </body>

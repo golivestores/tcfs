@@ -80,6 +80,9 @@
     transition: background .3s;
 }
 .page-v2 .cp-cat-card:hover .cp-cat-shop { background: #333; }
+
+/* 預設桌面端隱藏箭頭（僅手機端顯示） */
+.page-v2 .cp-cat-arrows { display: none; }
 /* ============ 3. 左 sidebar + 右商品 ============ */
 .page-v2 .cp-layout {
     max-width: 1480px;
@@ -312,9 +315,7 @@
 
 /* ============ 響應式 ============ */
 @media (max-width: 1100px) {
-    .page-v2 .cp-cat-grid { grid-template-columns: 1fr 1fr; }
-    .page-v2 .cp-cat-card:last-child { grid-column: span 2; }
-    .page-v2 .cp-cat-card:last-child .cp-cat-image { aspect-ratio: 16 / 9; }
+    .page-v2 .cp-cat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .page-v2 .cp-layout {
         grid-template-columns: 220px 1fr;
         gap: 32px;
@@ -323,17 +324,66 @@
     .page-v2 .cp-imgtext { min-height: 380px; }
 }
 @media (max-width: 900px) {
-    .page-v2 .cp-cat-cards { padding: 24px 20px 36px; }
+    .page-v2 .cp-cat-cards {
+        padding: 24px 20px 36px;
+        position: relative;
+    }
     .page-v2 .cp-cat-title { font-size: 28px; line-height: 1.2; }
     .page-v2 .cit-title { font-size: 28px; line-height: 1.2; }
+
+    /* 手機端：分類卡轉橫向滑動 carousel，嚴格 1:1 */
     .page-v2 .cp-cat-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        display: flex;
+        grid-template-columns: none;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 20px;
+        padding: 0 20px;
+        margin: 0 -20px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
-    .page-v2 .cp-cat-card:last-child { grid-column: auto; }
-    .page-v2 .cp-cat-card:last-child .cp-cat-image,
-    .page-v2 .cp-cat-card .cp-cat-image { aspect-ratio: 4 / 3; }
+    .page-v2 .cp-cat-grid::-webkit-scrollbar { display: none; }
+    .page-v2 .cp-cat-card {
+        flex: 0 0 78%;
+        scroll-snap-align: start;
+    }
+    .page-v2 .cp-cat-card .cp-cat-image {
+        aspect-ratio: 1 / 1;
+    }
     .page-v2 .cp-cat-card-title { font-size: 19px; }
+
+    /* 滑動箭頭 */
+    .page-v2 .cp-cat-arrows {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 18px;
+    }
+    .page-v2 .cp-cat-arrow {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #d6d2cb;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        color: #222;
+        padding: 0;
+        transition: background .2s, color .2s, border-color .2s;
+    }
+    .page-v2 .cp-cat-arrow:active,
+    .page-v2 .cp-cat-arrow:hover {
+        background: #222;
+        color: #fff;
+        border-color: #222;
+    }
+    .page-v2 .cp-cat-arrow[disabled] {
+        opacity: .35;
+        pointer-events: none;
+    }
 
     .page-v2 .cp-layout {
         grid-template-columns: 1fr;
