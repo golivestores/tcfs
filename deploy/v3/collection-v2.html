@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全部商品 | TOO COOL FOR SCHOOL</title>
+    <title>全部商品 (V2) | TOO COOL FOR SCHOOL</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/v2-blocks.css">
     <link rel="stylesheet" href="css/collection.css">
+    <link rel="stylesheet" href="css/collection-v2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="page-collection">
+<body class="page-collection page-v2">
 
     <!-- 頂部公告欄 -->
     <div class="top-bar" id="announcementBar">
@@ -86,89 +87,143 @@
 
     <main class="main-content collection-page">
 
-        <!-- ===== Collection Hero ===== -->
-        <section class="cp-hero">
-            <picture class="cp-hero-bg">
-                <source media="(max-width: 768px)" srcset="images/hp_banner_mobile.jpg">
-                <img src="images/hp_banner_1.webp" alt="" loading="eager">
-            </picture>
-            <div class="cp-hero-text">
-                <span class="cp-hero-label">DISCOVER THE COLLECTION</span>
-                <h1 class="cp-hero-title" id="cpHeroTitle">全部商品</h1>
-                <p class="cp-hero-sub">Where art meets beauty.</p>
-                <p class="cp-hero-desc" id="cpHeroDesc">融合首爾的細膩與紐約的叛逆，<br>每一件作品，皆是對美的自由想像。</p>
-                <div class="cp-hero-meta">
-                    <span class="cp-hero-count"><strong id="cpTotalCount">16</strong> 件商品</span>
-                    <span class="cp-hero-dot">·</span>
-                    <span class="cp-hero-tag">免運門檻 NT$1,500</span>
-                </div>
+        <!-- ===== 1. 主分類圖文卡片 ===== -->
+        <section class="cp-cat-cards">
+            <header class="cp-cat-head">
+                <h1 class="cp-cat-title" id="cpHeroTitle">全部商品</h1>
+            </header>
+            <div class="cp-cat-grid">
+                <a class="cp-cat-card" href="collection-v2.html?cat=lips">
+                    <div class="cp-cat-image">
+                        <img src="images/cat-lips.jpg" alt="唇妝系列">
+                    </div>
+                    <div class="cp-cat-foot">
+                        <h3 class="cp-cat-card-title">唇妝系列</h3>
+                        <span class="cp-cat-shop">Shop</span>
+                    </div>
+                </a>
+                <a class="cp-cat-card" href="collection-v2.html?cat=face">
+                    <div class="cp-cat-image">
+                        <img src="images/cat-face.webp" alt="底妝系列">
+                    </div>
+                    <div class="cp-cat-foot">
+                        <h3 class="cp-cat-card-title">底妝系列</h3>
+                        <span class="cp-cat-shop">Shop</span>
+                    </div>
+                </a>
+                <a class="cp-cat-card" href="collection-v2.html?cat=eyes">
+                    <div class="cp-cat-image">
+                        <img src="images/cat-eyes.jpg" alt="眼妝系列">
+                    </div>
+                    <div class="cp-cat-foot">
+                        <h3 class="cp-cat-card-title">眼妝系列</h3>
+                        <span class="cp-cat-shop">Shop</span>
+                    </div>
+                </a>
             </div>
         </section>
+        <span id="cpTotalCount" hidden>16</span>
 
-        <!-- ===== Toolbar：篩選 + 排序 ===== -->
-        <section class="cp-toolbar">
-            <div class="cp-pills-wrap">
-                <div class="cp-pills" id="cpPills">
-                    <button class="cp-pill active" data-cat="all">全部 <span class="cp-pill-count" data-cat-count="all">16</span></button>
-                    <button class="cp-pill" data-cat="lips">唇妝 <span class="cp-pill-count" data-cat-count="lips">1</span></button>
-                    <button class="cp-pill" data-cat="face">底妝 <span class="cp-pill-count" data-cat-count="face">8</span></button>
-                    <button class="cp-pill" data-cat="eyes">眼妝 <span class="cp-pill-count" data-cat-count="eyes">7</span></button>
-                </div>
-            </div>
-            <div class="cp-sort">
-                <label for="cpSort" class="cp-sort-label">排序</label>
-                <div class="cp-sort-select-wrap">
-                    <select id="cpSort" class="cp-sort-select">
-                        <option value="featured">推薦排序</option>
-                        <option value="newest">新品優先</option>
-                        <option value="rating">評價最高</option>
-                        <option value="price-asc">價格 低到高</option>
-                        <option value="price-desc">價格 高到低</option>
-                    </select>
-                    <svg class="cp-sort-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                </div>
-            </div>
-        </section>
+        <!-- ===== Layout：左 sidebar + 右商品區 ===== -->
+        <div class="cp-layout">
 
-        <!-- ===== 結果統計列 ===== -->
-        <div class="cp-results-bar">
-            <p class="cp-results-text">顯示 <strong id="cpVisibleCount">12</strong> / <strong id="cpFilterCount">16</strong> 件商品</p>
+            <!-- 左側 sidebar 篩選 -->
+            <aside class="cp-sidebar">
+                <button class="cp-side-toggle" type="button" aria-expanded="false" aria-controls="cpSidebarBody">
+                    <span>篩選與排序</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="cp-side-body" id="cpSidebarBody">
+                    <div class="cp-side-section">
+                        <h3 class="cp-side-title">色號</h3>
+                        <div class="cp-color-swatches">
+                            <span class="cp-swatch" style="--c:#d4b48a;" title="裸杏"></span>
+                            <span class="cp-swatch" style="--c:#e87a5a;" title="珊瑚"></span>
+                            <span class="cp-swatch" style="--c:#f0a892;" title="蜜桃"></span>
+                            <span class="cp-swatch" style="--c:#d33d6e;" title="玫紅"></span>
+                            <span class="cp-swatch" style="--c:#a83248;" title="漿果紅"></span>
+                            <span class="cp-swatch" style="--c:#7a3a4a;" title="莓紫"></span>
+                            <span class="cp-swatch" style="--c:#8b6240;" title="暖棕"></span>
+                            <span class="cp-swatch" style="--c:#5a3a2a;" title="深棕"></span>
+                        </div>
+                    </div>
+
+                    <div class="cp-side-section">
+                        <h3 class="cp-side-title">分類</h3>
+                        <div class="cp-side-pills" id="cpPills">
+                            <button class="cp-pill cp-side-pill active" data-cat="all">
+                                <span class="cp-side-check" aria-hidden="true"></span>
+                                <span class="cp-side-pill-name">全部商品</span>
+                                <span class="cp-pill-count" data-cat-count="all">16</span>
+                            </button>
+                            <button class="cp-pill cp-side-pill" data-cat="lips">
+                                <span class="cp-side-check" aria-hidden="true"></span>
+                                <span class="cp-side-pill-name">唇妝</span>
+                                <span class="cp-pill-count" data-cat-count="lips">1</span>
+                            </button>
+                            <button class="cp-pill cp-side-pill" data-cat="face">
+                                <span class="cp-side-check" aria-hidden="true"></span>
+                                <span class="cp-side-pill-name">底妝</span>
+                                <span class="cp-pill-count" data-cat-count="face">8</span>
+                            </button>
+                            <button class="cp-pill cp-side-pill" data-cat="eyes">
+                                <span class="cp-side-check" aria-hidden="true"></span>
+                                <span class="cp-side-pill-name">眼妝</span>
+                                <span class="cp-pill-count" data-cat-count="eyes">7</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="cp-side-section">
+                        <h3 class="cp-side-title">排序</h3>
+                        <div class="cp-sort-select-wrap">
+                            <select id="cpSort" class="cp-sort-select">
+                                <option value="featured">推薦排序</option>
+                                <option value="newest">新品優先</option>
+                                <option value="rating">評價最高</option>
+                                <option value="price-asc">價格 低到高</option>
+                                <option value="price-desc">價格 高到低</option>
+                            </select>
+                            <svg class="cp-sort-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 右側商品內容區 -->
+            <div class="cp-content">
+                <div class="cp-results-bar">
+                    <p class="cp-results-text">顯示 <strong id="cpVisibleCount">12</strong> / <strong id="cpFilterCount">16</strong> 件商品</p>
+                </div>
+
+                <section class="cp-grid-section">
+                    <div class="cp-grid" id="cpGrid">
+                        <!-- JS 動態渲染 .product-card -->
+                    </div>
+                    <div class="cp-empty" id="cpEmpty" hidden>
+                        <p>沒有符合此分類的商品。</p>
+                        <button class="cp-empty-reset" id="cpEmptyReset">重設篩選</button>
+                    </div>
+                    <div class="cp-loadmore-wrap" id="cpLoadmoreWrap">
+                        <div class="cp-loadmore-bar"><span class="cp-loadmore-fill" id="cpProgressBar" style="width:0"></span></div>
+                        <button class="cp-loadmore" id="cpLoadmore">載入更多</button>
+                    </div>
+                </section>
+            </div>
         </div>
 
-        <!-- ===== Product Grid ===== -->
-        <section class="cp-grid-section">
-            <div class="cp-grid" id="cpGrid">
-                <!-- JS 動態渲染 .product-card -->
+        <!-- ===== 4. 左圖右文 ===== -->
+        <section class="cp-imgtext">
+            <div class="cit-image">
+                <img src="https://www.3cecosmetics.com/-/media/project/loreal/brand-sites/tce/apac/int/en-image-assets/all-prouducts/lips/lip-tint/misty-lip-bare/module/main_product-visual_misty.jpg?cx=0.48&cy=0.52&cw=960&ch=1300" alt="美麗是一場集體創作">
             </div>
-            <div class="cp-empty" id="cpEmpty" hidden>
-                <p>沒有符合此分類的商品。</p>
-                <button class="cp-empty-reset" id="cpEmptyReset">重設篩選</button>
-            </div>
-            <div class="cp-loadmore-wrap" id="cpLoadmoreWrap">
-                <div class="cp-loadmore-bar"><span class="cp-loadmore-fill" id="cpProgressBar" style="width:0"></span></div>
-                <button class="cp-loadmore" id="cpLoadmore">載入更多</button>
+            <div class="cit-text">
+                <span class="cit-eyebrow">ABOUT THE BRAND</span>
+                <h2 class="cit-title">美麗是一場集體創作</h2>
+                <p class="cit-desc">每一個你選中的色號、每一支隨手收進化妝包的小物，都是 Too Cool For School 與你共同完成的作品。在這裡，找到下一個屬於自己的靈感。</p>
+                <a href="#" class="cit-cta">了解我們的故事 →</a>
             </div>
         </section>
-
-        <!-- ===== 品牌訊息段（沿用 v2-blocks 樣式，全寬鋪滿） ===== -->
-        <div class="v2-blocks">
-            <section class="grid grid-cols-1 md:grid-cols-2" style="height:50vh;min-height:320px;max-height:540px;margin:0;border-radius:0;overflow:hidden;">
-                <div class="flex flex-col justify-center" style="background:#F1ECE3;padding:32px 50px;">
-                    <div class="reveal">
-                        <h2 class="font-display italic leading-[1.1]" style="font-size:34px;color:var(--ink);margin-bottom:max(1.5rem,1.5vw);">美麗是一場集體創作</h2>
-                    </div>
-                    <div class="reveal" style="transition-delay:.12s;">
-                        <p class="font-body leading-[1.8] max-w-[480px]" style="font-size:clamp(14px,1.1vw,16px);color:var(--ink);margin-bottom:max(1.5rem,1.5vw);">每一個你選中的色號、每一支隨手收進化妝包的小物，都是 Too Cool For School 與你共同完成的作品。在這裡，找到下一個屬於自己的靈感。</p>
-                    </div>
-                    <div class="reveal" style="transition-delay:.24s;">
-                        <a href="#" class="inline-block font-body font-medium uppercase tracking-[0.1em] transition-all duration-300" style="font-size:clamp(14px,1.1vw,16px);padding:0.8rem 2.4rem;border:1.5px solid var(--ink);border-radius:8px;color:var(--ink);">我們的故事</a>
-                    </div>
-                </div>
-                <div class="relative overflow-hidden">
-                    <img alt="Brand visual" class="absolute inset-0 w-full h-full object-cover" src="https://www.3cecosmetics.com/-/media/project/loreal/brand-sites/tce/apac/int/en-image-assets/all-prouducts/lips/lip-tint/misty-lip-bare/module/main_product-visual_misty.jpg?cx=0.48&cy=0.52&cw=960&ch=1300" style="transform:scale(1.1);">
-                </div>
-            </section>
-        </div>
 
         <!-- ===== 信任條 ===== -->
         <section class="cp-trust">
@@ -301,5 +356,19 @@
 
     <script src="js/main.js"></script>
     <script src="js/collection.js"></script>
+    <script>
+        /* Sidebar 摺疊：行動版點 toggle 切換 data-open */
+        (function () {
+            const sb = document.querySelector('.page-v2 .cp-sidebar');
+            if (!sb) return;
+            const tg = sb.querySelector('.cp-side-toggle');
+            if (!tg) return;
+            tg.addEventListener('click', () => {
+                const open = sb.dataset.open === 'true';
+                sb.dataset.open = open ? 'false' : 'true';
+                tg.setAttribute('aria-expanded', String(!open));
+            });
+        })();
+    </script>
 </body>
 </html>
