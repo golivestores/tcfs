@@ -8,6 +8,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     new CollectionPage();
 });
+
+/* 共用：色號相似度（RGB 歐氏距離）— v2 sidebar 色號 swatch 用 */
+function _cpHexToRgb(hex) {
+    if (!hex) return null;
+    hex = hex.replace('#', '').trim();
+    if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+    if (hex.length !== 6) return null;
+    const n = parseInt(hex, 16);
+    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+}
+function _cpColorDistance(a, b) {
+    if (!a || !b) return Infinity;
+    return Math.sqrt((a.r - b.r) ** 2 + (a.g - b.g) ** 2 + (a.b - b.b) ** 2);
+}
+const CP_COLOR_MATCH_THRESHOLD = 110;
 /* 註：清除 fixed header 的 padding-top 由 main.js initHeaderScroll() 統一寫到 body，
    不要在這裡額外加，否則會疊加出超大空白。 */
 
@@ -212,6 +227,12 @@ class CollectionPage {
         this.updateCategoryCounts();
         this.syncHeaderNav();
         this.render();
+
+        /* v2 色號 swatch 觸發的篩選變更（v1 沒有 swatch 元素，不影響） */
+        document.addEventListener('cp:filter-change', () => {
+            this.visible = this.pageSize;
+            this.render();
+        });
     }
 
     /* 同步 header 主導航的 active 高亮（依當前 cat） */
@@ -267,6 +288,7 @@ class CollectionPage {
         this.emptyReset.addEventListener('click', () => {
             this.activeCat = 'all';
             this.pills.forEach(p => p.classList.toggle('active', p.dataset.cat === 'all'));
+            document.querySelectorAll('.cp-swatch.active').forEach(s => s.classList.remove('active'));
             this.visible = this.pageSize;
             this.syncUrl();
             this.syncHeaderNav();
@@ -294,6 +316,23 @@ class CollectionPage {
     filteredSorted() {
         let list = CP_PRODUCTS.slice();
         if (this.activeCat !== 'all') list = list.filter(p => p.cat === this.activeCat);
+
+        /* 色號 swatch 篩選（v2 sidebar）：只保留至少一個變體色與選中色相近的商品 */
+        const activeSw = document.querySelector('.cp-swatch.active');
+        if (activeSw) {
+            const targetHex = (activeSw.style.getPropertyValue('--c')
+                            || activeSw.dataset.color
+                            || '').trim();
+            const target = _cpHexToRgb(targetHex);
+            if (target) {
+                list = list.filter(prod =>
+                    Array.isArray(prod.swatches) && prod.swatches.some(s => {
+                        const rgb = _cpHexToRgb(s.color);
+                        return rgb && _cpColorDistance(target, rgb) < CP_COLOR_MATCH_THRESHOLD;
+                    })
+                );
+            }
+        }
 
         switch (this.sortKey) {
             case 'newest':
