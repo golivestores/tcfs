@@ -510,36 +510,13 @@
         .bs2-future__seal-rim-top{ top:14px; }
         .bs2-future__seal-rim-bot{ bottom:14px; }
 
-        /* 中央 collage 卡片 */
-        .bs2-future__collage{
+        /* 中央 collage 卡片背景圖 */
+        .bs2-future__collage-bg{
             position:absolute; inset:0;
-            background:#e8e1d0;
+            width:100%; height:100%;
+            object-fit:cover;
+            display:block;
         }
-        .bs2-future__tile{
-            position:absolute;
-            border-radius:8px;
-            overflow:hidden;
-            box-shadow:0 10px 24px -10px rgba(60,46,20,.28);
-            background:#d4c8a8;
-        }
-        .bs2-future__tile img{ width:100%; height:100%; object-fit:cover; display:block; }
-        .bs2-future__tile.t1{ top:5%;  left:6%;  width:30%; aspect-ratio:3/4; }
-        .bs2-future__tile.t2{ top:8%;  right:5%; width:36%; aspect-ratio:4/3; }
-        .bs2-future__tile.t3{ top:42%; left:3%;  width:26%; aspect-ratio:1/1; }
-        .bs2-future__tile.t4{ top:48%; right:7%; width:22%; aspect-ratio:1/1; }
-        .bs2-future__tile.t5{ bottom:5%; left:18%; width:32%; aspect-ratio:4/3; }
-        .bs2-future__tile.t6{ bottom:8%; right:4%; width:24%; aspect-ratio:3/4; }
-
-        /* 中央 collage 裝飾色塊 */
-        .bs2-future__deco{
-            position:absolute;
-            background:rgba(255,255,255,.55);
-            border-radius:8px;
-        }
-        .bs2-future__deco.d1{ top:32%; right:42%; width:54px; height:32px; }
-        .bs2-future__deco.d2{ top:18%; right:46%; width:18px; height:18px; border-radius:50%; background:#d2c19a; }
-        .bs2-future__deco.d3{ bottom:36%; left:42%; width:46px; height:18px; }
-        .bs2-future__deco.d4{ bottom:18%; left:8%;  width:10px; height:10px; border-radius:50%; background:#bda771; }
 
         /* 中央 feature 標籤卡 */
         .bs2-future__feature{
@@ -869,29 +846,17 @@
                         </div>
                     </div>
 
-                    <!-- Col 2 (spans 2 rows): collage -->
+                    <!-- Col 2 (spans 2 rows): 場景圖 + 中央徽章 -->
                     <div class="bs2-future__card bs2-future__card--collage">
-                        <div class="bs2-future__collage">
-                            <div class="bs2-future__tile t1"><img src="images/brand/journey/2010-artclass.jpg" alt="" loading="lazy"></div>
-                            <div class="bs2-future__tile t2"><img src="images/brand/journey/2024-global.jpg" alt="" loading="lazy"></div>
-                            <div class="bs2-future__tile t3"><img src="images/brand/journey/2015-flagship.jpg" alt="" loading="lazy"></div>
-                            <div class="bs2-future__tile t4"><img src="images/brand/journey/2021-frottage.jpg" alt="" loading="lazy"></div>
-                            <div class="bs2-future__tile t5"><img src="images/brand/journey/2018-atelier.jpg" alt="" loading="lazy"></div>
-                            <div class="bs2-future__tile t6"><img src="images/brand/brand-display.jpg" alt="" loading="lazy"></div>
+                        <img class="bs2-future__collage-bg" src="images/brand/brand-v2-collage-bg.jpg" alt="ARTCLASS 修容場景" loading="lazy">
 
-                            <span class="bs2-future__deco d1"></span>
-                            <span class="bs2-future__deco d2"></span>
-                            <span class="bs2-future__deco d3"></span>
-                            <span class="bs2-future__deco d4"></span>
-
-                            <div class="bs2-future__feature">
-                                <span class="bs2-future__feature-brand">TOO COOL FOR SCHOOL</span>
-                                <span class="bs2-future__feature-divider"></span>
-                                <span class="bs2-future__feature-pre">K-Beauty&rsquo;s</span>
-                                <span class="bs2-future__feature-big">No.1</span>
-                                <span class="bs2-future__feature-cat">Art-Class Color Lab，蟬聯首爾彩妝藝術評選首位</span>
-                                <span class="bs2-future__feature-note">*K-Beauty Editor&rsquo;s Pick 2024<br>by Allure Korea</span>
-                            </div>
+                        <div class="bs2-future__feature">
+                            <span class="bs2-future__feature-brand">TOO COOL FOR SCHOOL</span>
+                            <span class="bs2-future__feature-divider"></span>
+                            <span class="bs2-future__feature-pre">K-Beauty&rsquo;s</span>
+                            <span class="bs2-future__feature-big">No.1</span>
+                            <span class="bs2-future__feature-cat">Art-Class Color Lab，蟬聯首爾彩妝藝術評選首位</span>
+                            <span class="bs2-future__feature-note">*K-Beauty Editor&rsquo;s Pick 2024<br>by Allure Korea</span>
                         </div>
                     </div>
 
