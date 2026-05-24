@@ -382,6 +382,237 @@
             .bs2-stack__title{ font-size:clamp(28px, 7.6vw, 38px); }
             .bs2-stack__desc{ font-size:15px; line-height:1.7; }
         }
+
+        /* ===== Future grid（3-col 拼貼網格，混合圖文卡 + 中央照片合集） ===== */
+        .bs2-future{
+            background:#ece6d8;
+            padding:96px 32px 110px;
+        }
+        .bs2-future__inner{
+            max-width:1320px;
+            margin:0 auto;
+        }
+        .bs2-future__title{
+            font-family:'DM Serif Display','Noto Sans TC',serif;
+            font-weight:400;
+            font-size:clamp(40px, 5vw, 76px);
+            line-height:1.05;
+            letter-spacing:-.5px;
+            color:#1a1a1a;
+            text-align:center;
+            margin-bottom:72px;
+        }
+        .bs2-future__title .ital{ font-style:italic; color:#9a7c4a; }
+
+        .bs2-future__grid{
+            display:grid;
+            grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,1fr);
+            grid-template-rows:auto auto;
+            gap:18px;
+        }
+        .bs2-future__card{
+            background:#e8e1d0;
+            border-radius:22px;
+            padding:36px 32px;
+            position:relative;
+            overflow:hidden;
+        }
+        .bs2-future__card--collage{
+            grid-column:2;
+            grid-row:1 / span 2;
+            padding:0;
+            min-height:780px;
+        }
+        .bs2-future__card--image{
+            padding:0;
+            min-height:380px;
+        }
+        .bs2-future__card--image img{
+            width:100%; height:100%;
+            object-fit:cover;
+            display:block;
+            position:absolute; inset:0;
+        }
+
+        /* Stat cards 內部 */
+        .bs2-future__icon{
+            display:flex; align-items:center; justify-content:center;
+            width:38px; height:38px;
+            color:#c5784f;
+            margin-bottom:140px;
+        }
+        .bs2-future__icon svg{ width:30px; height:30px; }
+        .bs2-future__stat-title{
+            font-family:'Instrument Sans','DM Sans',sans-serif;
+            font-weight:700;
+            font-size:24px;
+            color:#1a1a1a;
+            margin-bottom:14px;
+            letter-spacing:-.2px;
+            line-height:1.25;
+        }
+        .bs2-future__stat-body{
+            font-family:'Noto Sans TC',sans-serif;
+            font-size:14.5px;
+            line-height:1.7;
+            color:#5e574a;
+            max-width:380px;
+        }
+        .bs2-future__stars{
+            display:flex; gap:3px;
+            margin-bottom:14px;
+            position:absolute;
+            top:36px; right:32px;
+            color:#e6a93b;
+            font-size:18px;
+            letter-spacing:1px;
+        }
+
+        /* 金色 18 YEARS 徽章（純 CSS + 內嵌 SVG） */
+        .bs2-future__seal{
+            position:absolute;
+            bottom:32px;
+            left:32px;
+            width:120px;
+            height:120px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#fff;
+            text-align:center;
+            line-height:1.1;
+            font-family:'Instrument Sans','DM Sans',sans-serif;
+            font-weight:700;
+        }
+        .bs2-future__seal svg{ position:absolute; inset:0; width:100%; height:100%; }
+        .bs2-future__seal-num{ font-size:22px; letter-spacing:.5px; }
+        .bs2-future__seal-rim-top,
+        .bs2-future__seal-rim-bot{
+            position:absolute;
+            left:0; right:0;
+            font-size:8px;
+            letter-spacing:2.5px;
+            font-weight:700;
+        }
+        .bs2-future__seal-rim-top{ top:14px; }
+        .bs2-future__seal-rim-bot{ bottom:14px; }
+
+        /* 中央 collage 卡片 */
+        .bs2-future__collage{
+            position:absolute; inset:0;
+            background:#e8e1d0;
+        }
+        .bs2-future__tile{
+            position:absolute;
+            border-radius:8px;
+            overflow:hidden;
+            box-shadow:0 10px 24px -10px rgba(60,46,20,.28);
+            background:#d4c8a8;
+        }
+        .bs2-future__tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+        .bs2-future__tile.t1{ top:5%;  left:6%;  width:30%; aspect-ratio:3/4; }
+        .bs2-future__tile.t2{ top:8%;  right:5%; width:36%; aspect-ratio:4/3; }
+        .bs2-future__tile.t3{ top:42%; left:3%;  width:26%; aspect-ratio:1/1; }
+        .bs2-future__tile.t4{ top:48%; right:7%; width:22%; aspect-ratio:1/1; }
+        .bs2-future__tile.t5{ bottom:5%; left:18%; width:32%; aspect-ratio:4/3; }
+        .bs2-future__tile.t6{ bottom:8%; right:4%; width:24%; aspect-ratio:3/4; }
+
+        /* 中央 collage 裝飾色塊 */
+        .bs2-future__deco{
+            position:absolute;
+            background:rgba(255,255,255,.55);
+            border-radius:8px;
+        }
+        .bs2-future__deco.d1{ top:32%; right:42%; width:54px; height:32px; }
+        .bs2-future__deco.d2{ top:18%; right:46%; width:18px; height:18px; border-radius:50%; background:#d2c19a; }
+        .bs2-future__deco.d3{ bottom:36%; left:42%; width:46px; height:18px; }
+        .bs2-future__deco.d4{ bottom:18%; left:8%;  width:10px; height:10px; border-radius:50%; background:#bda771; }
+
+        /* 中央 feature 標籤卡 */
+        .bs2-future__feature{
+            position:absolute;
+            top:50%; left:50%;
+            transform:translate(-50%, -50%);
+            background:#efe4cb;
+            border-radius:14px;
+            padding:22px 30px 18px;
+            display:flex; flex-direction:column; align-items:center; text-align:center;
+            z-index:3;
+            box-shadow:0 14px 30px -10px rgba(40,28,8,.22);
+            width:min(220px, 60%);
+        }
+        .bs2-future__feature-brand{
+            font-family:'Instrument Sans','DM Sans',sans-serif;
+            font-weight:800;
+            font-size:11px;
+            letter-spacing:2px;
+            color:#9a7c4a;
+            margin-bottom:6px;
+        }
+        .bs2-future__feature-divider{
+            width:30px; height:1px; background:#c8b58b; margin:6px 0 8px;
+        }
+        .bs2-future__feature-pre{
+            font-family:'Noto Sans TC',sans-serif;
+            font-size:11px; color:#8a7b5e; margin-bottom:0;
+        }
+        .bs2-future__feature-big{
+            font-family:'DM Serif Display',serif;
+            font-size:50px;
+            line-height:1;
+            color:#fff;
+            -webkit-text-stroke:.5px #b5a274;
+            margin:2px 0 6px;
+        }
+        .bs2-future__feature-cat{
+            font-family:'Noto Sans TC',sans-serif;
+            font-size:12px;
+            color:#5a4f3a;
+            line-height:1.4;
+            max-width:160px;
+        }
+        .bs2-future__feature-note{
+            font-family:'Noto Sans TC',sans-serif;
+            font-size:9px;
+            color:#9a8a6b;
+            margin-top:10px;
+            line-height:1.3;
+        }
+
+        @media (max-width:990px){
+            .bs2-future{ padding:72px 24px 88px; }
+            .bs2-future__title{ margin-bottom:48px; }
+            .bs2-future__grid{
+                grid-template-columns:1fr 1fr;
+                gap:14px;
+            }
+            .bs2-future__card--collage{
+                grid-column:1 / -1;
+                grid-row:auto;
+                min-height:560px;
+                order:3;
+            }
+            .bs2-future__card--image{ min-height:320px; }
+            .bs2-future__icon{ margin-bottom:80px; }
+            .bs2-future__seal{ width:90px; height:90px; }
+            .bs2-future__seal-num{ font-size:18px; }
+        }
+        @media (max-width:750px){
+            .bs2-future{ padding:56px 14px 64px; }
+            .bs2-future__title{ font-size:clamp(32px, 8.4vw, 44px); margin-bottom:36px; }
+            .bs2-future__grid{ grid-template-columns:1fr; gap:12px; }
+            .bs2-future__card{ padding:28px 24px; }
+            .bs2-future__icon{ margin-bottom:48px; }
+            .bs2-future__stat-title{ font-size:20px; }
+            .bs2-future__card--collage{ min-height:480px; }
+            .bs2-future__card--image{ min-height:280px; }
+            .bs2-future__seal{ width:80px; height:80px; bottom:24px; left:24px; }
+            .bs2-future__seal-num{ font-size:15px; }
+            .bs2-future__seal-rim-top,
+            .bs2-future__seal-rim-bot{ font-size:6.5px; letter-spacing:1.6px; }
+            .bs2-future__feature{ width:min(180px, 70%); padding:18px 22px 14px; }
+            .bs2-future__feature-big{ font-size:38px; }
+        }
     </style>
 </head>
 <body class="page-brand">
@@ -579,6 +810,99 @@
                     </div>
                 </article>
 
+            </div>
+        </section>
+
+        <!-- ===== 4. Future Grid（3-col 拼貼，仿 iflytek "Future Runs on" 板塊） ===== -->
+        <section class="bs2-future">
+            <div class="bs2-future__inner">
+                <h2 class="bs2-future__title">美的未來，<span class="ital">從學院出發</span></h2>
+
+                <div class="bs2-future__grid">
+
+                    <!-- Col 1 row 1 -->
+                    <div class="bs2-future__card bs2-future__card--stat">
+                        <span class="bs2-future__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3l5 5-13 13H3v-5L16 3z"/><path d="M14 5l5 5"/></svg>
+                        </span>
+                        <h3 class="bs2-future__stat-title">18 年彩妝研究</h3>
+                        <p class="bs2-future__stat-body">從 2008 年首爾工作室出發，以藝術系視角重新定義韓系彩妝的色彩語言，把學院氛圍封進每一支化妝筆。</p>
+
+                        <div class="bs2-future__seal" aria-hidden="true">
+                            <svg viewBox="0 0 120 120">
+                                <defs>
+                                    <radialGradient id="goldSeal" cx="50%" cy="40%">
+                                        <stop offset="0%" stop-color="#f7d97a"/>
+                                        <stop offset="55%" stop-color="#d4a32a"/>
+                                        <stop offset="100%" stop-color="#8a5e10"/>
+                                    </radialGradient>
+                                </defs>
+                                <circle cx="60" cy="60" r="56" fill="url(#goldSeal)" stroke="#6e470c" stroke-width="2"/>
+                                <circle cx="60" cy="60" r="46" fill="none" stroke="#fbe7a6" stroke-width="1"/>
+                                <g fill="#fbe7a6">
+                                    <polygon points="60,10 62,16 68,16 63,20 65,26 60,22 55,26 57,20 52,16 58,16"/>
+                                    <polygon points="60,110 62,104 68,104 63,100 65,94 60,98 55,94 57,100 52,104 58,104"/>
+                                    <polygon points="10,60 16,58 16,52 20,57 26,55 22,60 26,65 20,63 16,68 16,62"/>
+                                    <polygon points="110,60 104,58 104,52 100,57 94,55 98,60 94,65 100,63 104,68 104,62"/>
+                                </g>
+                            </svg>
+                            <span class="bs2-future__seal-rim-top">ARTCLASS</span>
+                            <span class="bs2-future__seal-num">18 YEARS</span>
+                            <span class="bs2-future__seal-rim-bot">SINCE 2008</span>
+                        </div>
+                    </div>
+
+                    <!-- Col 2 (spans 2 rows): collage -->
+                    <div class="bs2-future__card bs2-future__card--collage">
+                        <div class="bs2-future__collage">
+                            <div class="bs2-future__tile t1"><img src="images/brand/journey/2010-artclass.jpg" alt="" loading="lazy"></div>
+                            <div class="bs2-future__tile t2"><img src="images/brand/journey/2024-global.jpg" alt="" loading="lazy"></div>
+                            <div class="bs2-future__tile t3"><img src="images/brand/journey/2015-flagship.jpg" alt="" loading="lazy"></div>
+                            <div class="bs2-future__tile t4"><img src="images/brand/journey/2021-frottage.jpg" alt="" loading="lazy"></div>
+                            <div class="bs2-future__tile t5"><img src="images/brand/journey/2018-atelier.jpg" alt="" loading="lazy"></div>
+                            <div class="bs2-future__tile t6"><img src="images/brand/brand-display.jpg" alt="" loading="lazy"></div>
+
+                            <span class="bs2-future__deco d1"></span>
+                            <span class="bs2-future__deco d2"></span>
+                            <span class="bs2-future__deco d3"></span>
+                            <span class="bs2-future__deco d4"></span>
+
+                            <div class="bs2-future__feature">
+                                <span class="bs2-future__feature-brand">TOO COOL FOR SCHOOL</span>
+                                <span class="bs2-future__feature-divider"></span>
+                                <span class="bs2-future__feature-pre">K-Beauty&rsquo;s</span>
+                                <span class="bs2-future__feature-big">No.1</span>
+                                <span class="bs2-future__feature-cat">Art-Class Color Lab，蟬聯首爾彩妝藝術評選首位</span>
+                                <span class="bs2-future__feature-note">*K-Beauty Editor&rsquo;s Pick 2024<br>by Allure Korea</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 3 row 1 -->
+                    <div class="bs2-future__card bs2-future__card--stat">
+                        <span class="bs2-future__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg>
+                        </span>
+                        <h3 class="bs2-future__stat-title">120+ 配方專利</h3>
+                        <p class="bs2-future__stat-body">五個研發中心，逾 120 項彩妝配方專利 — 每一支色號都通過 ISO 22716 化妝品優良製造規範認證。</p>
+                    </div>
+
+                    <!-- Col 1 row 2 -->
+                    <div class="bs2-future__card bs2-future__card--stat">
+                        <span class="bs2-future__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.8"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M14 19c.4-2.4 2.4-4 5-4 1.5 0 2 .4 2 .8"/></svg>
+                        </span>
+                        <div class="bs2-future__stars" aria-label="五星">★★★★★</div>
+                        <h3 class="bs2-future__stat-title">全球零售夥伴</h3>
+                        <p class="bs2-future__stat-body">與 Olive Young、Sephora、屈臣氏、明洞旗艦店 等亞洲與北美零售集團長期合作，據點橫跨 50+ 國家。</p>
+                    </div>
+
+                    <!-- Col 3 row 2: big image -->
+                    <div class="bs2-future__card bs2-future__card--image">
+                        <img src="images/brand/brand-v2-hero.jpg" alt="TCFS 模特試色">
+                    </div>
+
+                </div>
             </div>
         </section>
 
