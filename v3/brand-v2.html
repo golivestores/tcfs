@@ -605,6 +605,91 @@
             .bs2-future__feature{ width:min(180px, 70%); padding:18px 22px 14px; }
             .bs2-future__feature-big{ font-size:38px; }
         }
+
+        /* ===== Award / Press 板塊（仿 Uswing TIME's Best Inventions 結構） ===== */
+        .bs2-award{
+            background:#f6f6f6;
+            padding:96px 32px 80px;
+            text-align:center;
+        }
+        .bs2-award__inner{
+            max-width:1200px;
+            margin:0 auto;
+        }
+        .bs2-award__eyebrow{
+            font-family:'Instrument Sans','DM Sans',sans-serif;
+            font-size:13px;
+            font-weight:600;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            color:#1a1a1a;
+            margin-bottom:20px;
+        }
+        .bs2-award__title{
+            font-family:'Instrument Sans','DM Sans',sans-serif;
+            font-weight:700;
+            font-size:clamp(40px, 5.6vw, 76px);
+            line-height:1.05;
+            letter-spacing:-1.2px;
+            color:#1a1a1a;
+            margin-bottom:32px;
+        }
+        .bs2-award__hero{
+            margin:0 auto 40px;
+            max-width:960px;
+        }
+        .bs2-award__hero img{
+            width:100%; height:auto;
+            display:block;
+            margin:0 auto;
+        }
+        .bs2-award__quote{
+            font-family:'DM Serif Display','Noto Serif TC','Noto Sans TC',serif;
+            font-weight:400;
+            font-style:italic;
+            font-size:clamp(20px, 2.1vw, 28px);
+            line-height:1.55;
+            color:#1a1a1a;
+            max-width:780px;
+            margin:0 auto 80px;
+        }
+        .bs2-award__quote::before{ content:"\201C"; }
+        .bs2-award__quote::after{ content:"\201D"; }
+        .bs2-award__press{
+            display:flex;
+            flex-wrap:wrap;
+            align-items:center;
+            justify-content:center;
+            gap:36px 56px;
+            padding-top:36px;
+            border-top:1px solid #e2e2e2;
+        }
+        .bs2-award__press img{
+            height:26px;
+            width:auto;
+            opacity:.48;
+            filter:grayscale(1);
+            transition:opacity .25s ease, filter .25s ease;
+        }
+        .bs2-award__press img:hover{
+            opacity:.85;
+            filter:grayscale(.2);
+        }
+
+        @media (max-width:990px){
+            .bs2-award{ padding:72px 24px 64px; }
+            .bs2-award__quote{ margin-bottom:56px; }
+            .bs2-award__press{ gap:28px 40px; }
+            .bs2-award__press img{ height:22px; }
+        }
+        @media (max-width:750px){
+            .bs2-award{ padding:56px 18px 48px; }
+            .bs2-award__eyebrow{ font-size:11px; letter-spacing:2.4px; margin-bottom:14px; }
+            .bs2-award__title{ font-size:clamp(30px, 8.8vw, 42px); margin-bottom:22px; letter-spacing:-.6px; }
+            .bs2-award__quote{ font-size:18px; line-height:1.6; margin-bottom:42px; }
+            .bs2-award__press{ gap:22px 32px; padding-top:24px; }
+            .bs2-award__press img{ height:18px; }
+        }
     </style>
 </head>
 <body class="page-brand">
@@ -888,6 +973,32 @@
                         <img src="images/brand/brand-v2-hero.jpg" alt="TCFS 模特試色">
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 5. Award / Press 板塊 ===== -->
+        <section class="bs2-award">
+            <div class="bs2-award__inner">
+                <p class="bs2-award__eyebrow">ARTCLASS BY RODIN · NAMED IN</p>
+                <h2 class="bs2-award__title">BEST OF K-BEAUTY</h2>
+
+                <div class="bs2-award__hero">
+                    <img src="images/brand/award-hero.jpg" alt="ARTCLASS by Rodin 修容系列三件套" loading="lazy">
+                </div>
+
+                <p class="bs2-award__quote">它讓底妝看起來像顏料，而不是粉末 — 把每一張臉，都當作一張可以重新塗鴉的草圖。</p>
+
+                <div class="bs2-award__press" aria-label="媒體背書">
+                    <img src="images/brand/press/vogue.avif" alt="Vogue">
+                    <img src="images/brand/press/elle.webp" alt="Elle">
+                    <img src="images/brand/press/harpers-bazaar.webp" alt="Harper&rsquo;s Bazaar">
+                    <img src="images/brand/press/allure.avif" alt="Allure">
+                    <img src="images/brand/press/cosmopolitan.webp" alt="Cosmopolitan">
+                    <img src="images/brand/press/glamour.webp" alt="Glamour">
+                    <img src="images/brand/press/byrdie.webp" alt="Byrdie">
+                    <img src="images/brand/press/teen-vogue.png" alt="Teen Vogue">
+                    <img src="images/brand/press/wwd.webp" alt="WWD">
                 </div>
             </div>
         </section>
