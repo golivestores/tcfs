@@ -296,10 +296,11 @@
             grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
             gap:64px;
             align-items:center;
-            min-height:560px;
+            min-height:calc(100vh - var(--header-h) - 48px);
             margin-bottom:32px;
-            box-shadow:0 -10px 30px -16px rgba(0,0,0,.08);
-            transition:transform .6s cubic-bezier(.22,.61,.36,1), opacity .6s ease;
+            will-change:transform;
+            contain:layout paint;
+            transition:opacity .5s ease;
         }
         .bs2-stack__card:last-of-type{ margin-bottom:0; }
 
@@ -350,15 +351,9 @@
             transform:scale(1.04);
         }
 
-        /* 進入畫面的淡入上移微動畫（依靠 IntersectionObserver 切換 .is-in） */
-        .bs2-stack__card{
-            opacity:0;
-            transform:translateY(40px);
-        }
-        .bs2-stack__card.is-in{
-            opacity:1;
-            transform:translateY(0);
-        }
+        /* 進入畫面的淡入動畫（純 opacity，避免和 sticky 重定位衝突造成滾動卡頓） */
+        .bs2-stack__card{ opacity:0; }
+        .bs2-stack__card.is-in{ opacity:1; }
 
         @media (max-width:990px){
             .bs2-stack{ padding:32px 20px 72px; }
