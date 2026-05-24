@@ -417,15 +417,23 @@
             position:relative;
             overflow:hidden;
         }
+        .bs2-future__card--stat{
+            display:flex;
+            flex-direction:column;
+            min-height:440px;
+        }
+        .bs2-future__card--has-seal{
+            min-height:500px;
+        }
         .bs2-future__card--collage{
             grid-column:2;
             grid-row:1 / span 2;
             padding:0;
-            min-height:780px;
+            min-height:880px;
         }
         .bs2-future__card--image{
             padding:0;
-            min-height:380px;
+            min-height:440px;
         }
         .bs2-future__card--image img{
             width:100%; height:100%;
@@ -439,9 +447,16 @@
             display:flex; align-items:center; justify-content:center;
             width:38px; height:38px;
             color:#c5784f;
-            margin-bottom:140px;
         }
         .bs2-future__icon svg{ width:30px; height:30px; }
+        .bs2-future__text-block{
+            margin-top:auto;
+            display:flex;
+            flex-direction:column;
+        }
+        .bs2-future__card--has-seal .bs2-future__text-block{
+            margin-bottom:24px;
+        }
         .bs2-future__stat-title{
             font-family:'Instrument Sans','DM Sans',sans-serif;
             font-weight:700;
@@ -460,21 +475,18 @@
         }
         .bs2-future__stars{
             display:flex; gap:3px;
-            margin-bottom:14px;
             position:absolute;
-            top:36px; right:32px;
+            top:42px; right:32px;
             color:#e6a93b;
             font-size:18px;
             letter-spacing:1px;
         }
 
-        /* 金色 18 YEARS 徽章（純 CSS + 內嵌 SVG） */
+        /* 金色 18 YEARS 徽章（純 CSS + 內嵌 SVG，正常流，置於文字下方） */
         .bs2-future__seal{
-            position:absolute;
-            bottom:32px;
-            left:32px;
-            width:120px;
-            height:120px;
+            position:relative;
+            width:108px;
+            height:108px;
             display:flex;
             align-items:center;
             justify-content:center;
@@ -483,6 +495,7 @@
             line-height:1.1;
             font-family:'Instrument Sans','DM Sans',sans-serif;
             font-weight:700;
+            align-self:flex-start;
         }
         .bs2-future__seal svg{ position:absolute; inset:0; width:100%; height:100%; }
         .bs2-future__seal-num{ font-size:22px; letter-spacing:.5px; }
@@ -592,9 +605,10 @@
                 min-height:560px;
                 order:3;
             }
-            .bs2-future__card--image{ min-height:320px; }
-            .bs2-future__icon{ margin-bottom:80px; }
-            .bs2-future__seal{ width:90px; height:90px; }
+            .bs2-future__card--stat{ min-height:380px; }
+            .bs2-future__card--has-seal{ min-height:420px; }
+            .bs2-future__card--image{ min-height:340px; }
+            .bs2-future__seal{ width:96px; height:96px; }
             .bs2-future__seal-num{ font-size:18px; }
         }
         @media (max-width:750px){
@@ -602,11 +616,12 @@
             .bs2-future__title{ font-size:clamp(32px, 8.4vw, 44px); margin-bottom:36px; }
             .bs2-future__grid{ grid-template-columns:1fr; gap:12px; }
             .bs2-future__card{ padding:28px 24px; }
-            .bs2-future__icon{ margin-bottom:48px; }
+            .bs2-future__card--stat{ min-height:300px; }
+            .bs2-future__card--has-seal{ min-height:360px; }
             .bs2-future__stat-title{ font-size:20px; }
             .bs2-future__card--collage{ min-height:480px; }
             .bs2-future__card--image{ min-height:280px; }
-            .bs2-future__seal{ width:80px; height:80px; bottom:24px; left:24px; }
+            .bs2-future__seal{ width:84px; height:84px; }
             .bs2-future__seal-num{ font-size:15px; }
             .bs2-future__seal-rim-top,
             .bs2-future__seal-rim-bot{ font-size:6.5px; letter-spacing:1.6px; }
@@ -821,12 +836,14 @@
                 <div class="bs2-future__grid">
 
                     <!-- Col 1 row 1 -->
-                    <div class="bs2-future__card bs2-future__card--stat">
+                    <div class="bs2-future__card bs2-future__card--stat bs2-future__card--has-seal">
                         <span class="bs2-future__icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3l5 5-13 13H3v-5L16 3z"/><path d="M14 5l5 5"/></svg>
                         </span>
-                        <h3 class="bs2-future__stat-title">18 年彩妝研究</h3>
-                        <p class="bs2-future__stat-body">從 2008 年首爾工作室出發，以藝術系視角重新定義韓系彩妝的色彩語言，把學院氛圍封進每一支化妝筆。</p>
+                        <div class="bs2-future__text-block">
+                            <h3 class="bs2-future__stat-title">18 年彩妝研究</h3>
+                            <p class="bs2-future__stat-body">從 2008 年首爾工作室出發，以藝術系視角重新定義韓系彩妝的色彩語言，把學院氛圍封進每一支化妝筆。</p>
+                        </div>
 
                         <div class="bs2-future__seal" aria-hidden="true">
                             <svg viewBox="0 0 120 120">
@@ -883,8 +900,10 @@
                         <span class="bs2-future__icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg>
                         </span>
-                        <h3 class="bs2-future__stat-title">120+ 配方專利</h3>
-                        <p class="bs2-future__stat-body">五個研發中心，逾 120 項彩妝配方專利 — 每一支色號都通過 ISO 22716 化妝品優良製造規範認證。</p>
+                        <div class="bs2-future__text-block">
+                            <h3 class="bs2-future__stat-title">120+ 配方專利</h3>
+                            <p class="bs2-future__stat-body">五個研發中心，逾 120 項彩妝配方專利 — 每一支色號都通過 ISO 22716 化妝品優良製造規範認證。</p>
+                        </div>
                     </div>
 
                     <!-- Col 1 row 2 -->
@@ -893,8 +912,10 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.8"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M14 19c.4-2.4 2.4-4 5-4 1.5 0 2 .4 2 .8"/></svg>
                         </span>
                         <div class="bs2-future__stars" aria-label="五星">★★★★★</div>
-                        <h3 class="bs2-future__stat-title">全球零售夥伴</h3>
-                        <p class="bs2-future__stat-body">與 Olive Young、Sephora、屈臣氏、明洞旗艦店 等亞洲與北美零售集團長期合作，據點橫跨 50+ 國家。</p>
+                        <div class="bs2-future__text-block">
+                            <h3 class="bs2-future__stat-title">全球零售夥伴</h3>
+                            <p class="bs2-future__stat-body">與 Olive Young、Sephora、屈臣氏、明洞旗艦店 等亞洲與北美零售集團長期合作，據點橫跨 50+ 國家。</p>
+                        </div>
                     </div>
 
                     <!-- Col 3 row 2: big image -->
