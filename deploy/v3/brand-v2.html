@@ -1143,13 +1143,22 @@
             const stack = document.getElementById('bs2Stack');
             if (!stack) return;
 
+            const fullH = parseInt(getComputedStyle(document.body).paddingTop, 10) || 140;
+            const header = document.getElementById('siteHeader');
             const applyHeaderVar = () => {
-                const h = parseInt(getComputedStyle(document.body).paddingTop, 10) || 140;
-                document.documentElement.style.setProperty('--header-h', h + 'px');
+                if (header) {
+                    const t = header.style.transform;
+                    const hidden = t && t !== 'translateY(0)' && t !== 'translateY(0px)';
+                    document.documentElement.style.setProperty('--header-h', hidden ? '0px' : fullH + 'px');
+                } else {
+                    document.documentElement.style.setProperty('--header-h', fullH + 'px');
+                }
             };
             applyHeaderVar();
-            window.addEventListener('load', applyHeaderVar);
-            window.addEventListener('resize', applyHeaderVar);
+            if (header) {
+                new MutationObserver(applyHeaderVar).observe(header, { attributes:true, attributeFilter:['style'] });
+            }
+            window.addEventListener('resize', () => { document.documentElement.style.setProperty('--header-h', fullH + 'px'); });
 
             const cards = stack.querySelectorAll('.bs2-stack__card');
             if ('IntersectionObserver' in window){
