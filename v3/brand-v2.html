@@ -421,6 +421,20 @@
             display:flex;
             flex-direction:column;
             min-height:440px;
+            background-size:cover;
+            background-position:center top;
+            background-repeat:no-repeat;
+        }
+        .bs2-future__card--stat.has-bg::after{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:linear-gradient(to bottom, rgba(232,225,208,.15) 20%, #e8e1d0 65%);
+            pointer-events:none;
+        }
+        .bs2-future__card--stat.has-bg > *{
+            position:relative;
+            z-index:1;
         }
         .bs2-future__card--has-seal{
             min-height:500px;
@@ -912,7 +926,7 @@
                 <div class="bs2-future__grid">
 
                     <!-- Col 1 row 1 -->
-                    <div class="bs2-future__card bs2-future__card--stat">
+                    <div class="bs2-future__card bs2-future__card--stat has-bg" style="background-image:url(images/brand/stat-18years.jpg)">
                         <span class="bs2-future__icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3l5 5-13 13H3v-5L16 3z"/><path d="M14 5l5 5"/></svg>
                         </span>
@@ -937,7 +951,7 @@
                     </div>
 
                     <!-- Col 3 row 1 -->
-                    <div class="bs2-future__card bs2-future__card--stat">
+                    <div class="bs2-future__card bs2-future__card--stat has-bg" style="background-image:url(images/brand/stat-patents.jpg)">
                         <span class="bs2-future__icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg>
                         </span>
@@ -948,7 +962,7 @@
                     </div>
 
                     <!-- Col 1 row 2 -->
-                    <div class="bs2-future__card bs2-future__card--stat">
+                    <div class="bs2-future__card bs2-future__card--stat has-bg" style="background-image:url(images/brand/stat-retail.jpg)">
                         <span class="bs2-future__icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.8"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M14 19c.4-2.4 2.4-4 5-4 1.5 0 2 .4 2 .8"/></svg>
                         </span>
