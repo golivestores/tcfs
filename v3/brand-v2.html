@@ -638,10 +638,12 @@
             margin:0 auto 40px;
             max-width:960px;
         }
-        .bs2-award__hero img{
+        .bs2-award__hero img,
+        .bs2-award__hero video{
             width:100%; height:auto;
             display:block;
             margin:0 auto;
+            border-radius:14px;
         }
         .bs2-award__quote{
             font-family:'DM Serif Display','Noto Serif TC','Noto Sans TC',serif;
@@ -984,7 +986,10 @@
                 <h2 class="bs2-award__title">BEST OF K-BEAUTY</h2>
 
                 <div class="bs2-award__hero">
-                    <img src="images/brand/award-hero.jpg" alt="ARTCLASS by Rodin 修容系列三件套" loading="lazy">
+                    <video autoplay muted loop playsinline preload="metadata" poster="images/brand/award-hero.jpg">
+                        <source src="images/brand/award-hero.mp4" type="video/mp4">
+                        <img src="images/brand/award-hero.jpg" alt="ARTCLASS by Rodin 修容系列">
+                    </video>
                 </div>
 
                 <p class="bs2-award__quote">它讓底妝看起來像顏料，而不是粉末 — 把每一張臉，都當作一張可以重新塗鴉的草圖。</p>
