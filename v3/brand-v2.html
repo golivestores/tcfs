@@ -669,13 +669,21 @@
         .bs2-award__press img{
             height:26px;
             width:auto;
-            opacity:.48;
+            opacity:.38;
             filter:grayscale(1);
+            cursor:pointer;
             transition:opacity .25s ease, filter .25s ease;
         }
         .bs2-award__press img:hover{
-            opacity:.85;
-            filter:grayscale(.2);
+            opacity:.7;
+            filter:grayscale(.3);
+        }
+        .bs2-award__press img.is-active{
+            opacity:1;
+            filter:grayscale(0);
+        }
+        .bs2-award__quote{
+            transition:opacity .25s ease;
         }
 
         @media (max-width:990px){
@@ -994,16 +1002,25 @@
 
                 <p class="bs2-award__quote">它讓底妝看起來像顏料，而不是粉末 — 把每一張臉，都當作一張可以重新塗鴉的草圖。</p>
 
-                <div class="bs2-award__press" aria-label="媒體背書">
-                    <img src="images/brand/press/vogue.avif" alt="Vogue">
-                    <img src="images/brand/press/elle.webp" alt="Elle">
-                    <img src="images/brand/press/harpers-bazaar.webp" alt="Harper&rsquo;s Bazaar">
-                    <img src="images/brand/press/allure.avif" alt="Allure">
-                    <img src="images/brand/press/cosmopolitan.webp" alt="Cosmopolitan">
-                    <img src="images/brand/press/glamour.webp" alt="Glamour">
-                    <img src="images/brand/press/byrdie.webp" alt="Byrdie">
-                    <img src="images/brand/press/teen-vogue.png" alt="Teen Vogue">
-                    <img src="images/brand/press/wwd.webp" alt="WWD">
+                <div class="bs2-award__press" aria-label="媒體背書" id="bs2AwardPress">
+                    <img src="images/brand/press/vogue.avif" alt="Vogue"
+                         data-quote="ARTCLASS 把修容變成了一場微型的藝術創作 — 每一次刷色，都像在替臉龐打上一道光。">
+                    <img src="images/brand/press/elle.webp" alt="Elle"
+                         data-quote="太酷不上學的色彩哲學很簡單：不跟風，只做值得被收藏的作品。">
+                    <img src="images/brand/press/harpers-bazaar.webp" alt="Harper&rsquo;s Bazaar"
+                         data-quote="從首爾到紐約，ARTCLASS by Rodin 已經成為編輯包裡拿不走的那一塊修容。">
+                    <img src="images/brand/press/allure.avif" alt="Allure" class="is-active"
+                         data-quote="它讓底妝看起來像顏料，而不是粉末 — 把每一張臉，都當作一張可以重新塗鴉的草圖。">
+                    <img src="images/brand/press/cosmopolitan.webp" alt="Cosmopolitan"
+                         data-quote="如果化妝是一門課，太酷不上學就是那個永遠坐在最後一排、卻拿了全班最高分的人。">
+                    <img src="images/brand/press/glamour.webp" alt="Glamour"
+                         data-quote="三色灰階修容盤讓新手也能畫出雕塑般的輪廓 — 零技巧門檻，卻有專業級的完成度。">
+                    <img src="images/brand/press/byrdie.webp" alt="Byrdie"
+                         data-quote="Frottage Pencil 的拓印質感讓我第一次覺得，眉筆可以有手作的溫度。">
+                    <img src="images/brand/press/teen-vogue.png" alt="Teen Vogue"
+                         data-quote="太酷不上學的包裝讓我每次補妝都像在翻一本小型藝術雜誌 — 捨不得用完。">
+                    <img src="images/brand/press/wwd.webp" alt="WWD"
+                         data-quote="十八年來只做一件事：把韓國工藝的細膩，裝進每一支化妝筆裡。">
                 </div>
             </div>
         </section>
@@ -1100,6 +1117,24 @@
                     descEl.textContent = btn.dataset.desc;
                     img.style.opacity = '1';
                 }, 180);
+            });
+        })();
+
+        /* ===== Award Press：點擊 logo 切換引述文字 ===== */
+        (function(){
+            var press = document.getElementById('bs2AwardPress');
+            if (!press) return;
+            var quote = document.querySelector('.bs2-award__quote');
+            press.addEventListener('click', function(e){
+                var logo = e.target.closest('img[data-quote]');
+                if (!logo) return;
+                press.querySelectorAll('img').forEach(function(l){ l.classList.remove('is-active'); });
+                logo.classList.add('is-active');
+                quote.style.opacity = '0';
+                setTimeout(function(){
+                    quote.textContent = logo.dataset.quote;
+                    quote.style.opacity = '1';
+                }, 200);
             });
         })();
 
