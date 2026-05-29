@@ -1060,7 +1060,7 @@
 /* ============ 響應式：≤900px ============ */
 @media (max-width: 900px) {
     .tcfs-brand-story .bs-slider1-content {
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 28px;
     }
     .tcfs-brand-story .bs-left-content { max-width: none; margin-top: 0; }
@@ -1323,6 +1323,8 @@
     font-size:15px;
     color:#3a3a3a;
     line-height:1.7;
+    /* 預留最長描述所需高度，切換年份時不撐動板塊高度 */
+    min-height:calc(1.7em * 2);
 }
 .tcfs-brand-story .bs2-journey__scale{
     position:relative;
@@ -1395,6 +1397,7 @@
         aspect-ratio:4/3;
     }
     .tcfs-brand-story .bs2-journey__caption{ max-width:none; }
+    .tcfs-brand-story .bs2-journey__desc{ min-height:calc(1.7em * 3); }
     .tcfs-brand-story .bs2-journey__year{ font-size:30px; }
     .tcfs-brand-story .bs2-journey__track{
         overflow-x:auto;
