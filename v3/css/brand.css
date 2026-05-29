@@ -146,7 +146,7 @@
 /* ============ 3. Slider 1 · Brand Elements ============ */
 .tcfs-brand-story .bs-slider1 {
     padding: 64px 16px;
-    background: #f5f5f5;
+    background: #fff;
 }
 .tcfs-brand-story .bs-slider1 .bs-story-title {
     font-weight: 700;
@@ -937,6 +937,105 @@
     object-fit: cover;
 }
 
+/* ============ 7. Brand History Timeline ============ */
+.tcfs-brand-story .bs-timeline {
+    padding: 96px 16px;
+    background: #fff;
+}
+.tcfs-brand-story .bs-timeline .bs-story-title {
+    font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 4px;
+    color: #1a1a1a;
+    margin-bottom: 64px;
+    text-transform: uppercase;
+}
+.tcfs-brand-story .bs-timeline-inner {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.tcfs-brand-story .bs-tl-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--line);
+    transform: translateX(-50%);
+}
+.tcfs-brand-story .bs-tl-item {
+    position: relative;
+    width: 50%;
+    padding-bottom: 48px;
+}
+.tcfs-brand-story .bs-tl-left {
+    padding-right: 48px;
+    text-align: right;
+}
+.tcfs-brand-story .bs-tl-right {
+    margin-left: 50%;
+    padding-left: 48px;
+    text-align: left;
+}
+.tcfs-brand-story .bs-tl-dot {
+    position: absolute;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--champagne);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px var(--champagne);
+}
+.tcfs-brand-story .bs-tl-left .bs-tl-dot {
+    right: -7px;
+}
+.tcfs-brand-story .bs-tl-right .bs-tl-dot {
+    left: -7px;
+}
+.tcfs-brand-story .bs-tl-card {
+    display: inline-block;
+    text-align: left;
+}
+.tcfs-brand-story .bs-tl-year {
+    font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 8px;
+    letter-spacing: .5px;
+}
+.tcfs-brand-story .bs-tl-highlight {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #c0392b;
+    margin: 0 0 6px;
+    line-height: 1.6;
+}
+.tcfs-brand-story .bs-tl-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.tcfs-brand-story .bs-tl-list li {
+    position: relative;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #444;
+    font-weight: 300;
+    padding-left: 14px;
+    margin-bottom: 2px;
+}
+.tcfs-brand-story .bs-tl-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: #999;
+    font-weight: 700;
+}
+
 /* ============ 響應式：≤1440px ============ */
 @media (max-width: 1440px) {
     .tcfs-brand-story .bs-scontent,
@@ -1147,5 +1246,171 @@
     .tcfs-brand-story .bs-network-photos {
         grid-template-columns: 1fr;
         gap: 16px;
+    }
+
+    /* Timeline mobile */
+    .tcfs-brand-story .bs-timeline { padding: 56px 20px; }
+    .tcfs-brand-story .bs-timeline .bs-story-title { font-size: 24px; letter-spacing: 3px; margin-bottom: 40px; }
+    .tcfs-brand-story .bs-tl-line { left: 6px; }
+    .tcfs-brand-story .bs-tl-item { width: 100%; padding-left: 32px; padding-right: 0; text-align: left; }
+    .tcfs-brand-story .bs-tl-left { padding-right: 0; text-align: left; }
+    .tcfs-brand-story .bs-tl-right { margin-left: 0; padding-left: 32px; }
+    .tcfs-brand-story .bs-tl-left .bs-tl-dot,
+    .tcfs-brand-story .bs-tl-right .bs-tl-dot { left: 1px; right: auto; }
+    .tcfs-brand-story .bs-tl-item { padding-bottom: 32px; }
+    .tcfs-brand-story .bs-tl-year { font-size: 14px; }
+    .tcfs-brand-story .bs-tl-highlight { font-size: 12.5px; }
+    .tcfs-brand-story .bs-tl-list li { font-size: 12.5px; }
+}
+
+/* ===== Journey timeline · 學院年譜（v2 互動式年份刻度尺，由 brand-v2 移植） ===== */
+.tcfs-brand-story .bs2-journey{
+    background:#f2f2f2;
+    padding:96px 80px 110px;
+}
+.tcfs-brand-story .bs2-journey__inner{ max-width:1200px; margin:0 auto; }
+.tcfs-brand-story .bs2-journey__eyebrow{
+    font-family:'Instrument Sans','DM Sans',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    color:#222;
+    margin-bottom:14px;
+    letter-spacing:.2px;
+}
+.tcfs-brand-story .bs2-journey__title{
+    font-family:'Noto Sans TC',sans-serif;
+    font-weight:700;
+    font-size:40px;
+    color:#222;
+    letter-spacing:.5px;
+    margin-bottom:80px;
+    line-height:1.2;
+}
+.tcfs-brand-story .bs2-journey__stage{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+    margin-bottom:48px;
+    min-height:340px;
+}
+/* 左右切換箭頭：複用站內 .bs-arrow 風格（同色、同 hover） */
+.tcfs-brand-story .bs2-journey__prev{ left:-44px; }
+.tcfs-brand-story .bs2-journey__next{ right:-44px; }
+.tcfs-brand-story .bs2-journey__media{
+    justify-self:end;
+    width:100%;
+    max-width:420px;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    background:#ddd;
+}
+.tcfs-brand-story .bs2-journey__media img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:opacity .35s ease;
+}
+.tcfs-brand-story .bs2-journey__caption{ max-width:380px; }
+.tcfs-brand-story .bs2-journey__year{
+    font-family:'Instrument Sans','DM Sans',sans-serif;
+    font-size:38px;
+    font-weight:600;
+    color:#111;
+    margin-bottom:12px;
+    line-height:1;
+}
+.tcfs-brand-story .bs2-journey__desc{
+    font-family:'Noto Sans TC',sans-serif;
+    font-size:15px;
+    color:#3a3a3a;
+    line-height:1.7;
+}
+.tcfs-brand-story .bs2-journey__scale{
+    position:relative;
+    padding-top:18px;
+    border-top:1px solid #c8c6c0;
+}
+.tcfs-brand-story .bs2-journey__track{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:8px;
+}
+.tcfs-brand-story .bs2-journey__year-btn{
+    appearance:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:14px 0 0;
+    font-family:'Instrument Sans','DM Sans',sans-serif;
+    font-size:14px;
+    font-weight:500;
+    color:#9c998f;
+    position:relative;
+    letter-spacing:.4px;
+    transition:color .25s ease, font-size .25s ease;
+    line-height:1.1;
+}
+.tcfs-brand-story .bs2-journey__year-btn::before{
+    content:"";
+    position:absolute;
+    top:-1px;
+    left:50%;
+    width:1px;
+    height:8px;
+    background:#9c998f;
+    transform:translateX(-50%);
+    transition:background .25s ease, height .25s ease, width .25s ease;
+}
+.tcfs-brand-story .bs2-journey__year-btn:hover{ color:#111; }
+.tcfs-brand-story .bs2-journey__year-btn:hover::before{ background:#111; }
+.tcfs-brand-story .bs2-journey__year-btn.is-active{
+    color:#111;
+    font-weight:700;
+    font-size:16px;
+}
+.tcfs-brand-story .bs2-journey__year-btn.is-active::before{
+    background:#111;
+    height:14px;
+    width:2px;
+}
+
+@media (max-width:990px){
+    .tcfs-brand-story .bs2-journey{ padding:72px 48px; }
+    .tcfs-brand-story .bs2-journey__title{ margin-bottom:56px; }
+    .tcfs-brand-story .bs2-journey__stage{ gap:36px; }
+    .tcfs-brand-story .bs2-journey__media{ max-width:none; }
+}
+@media (max-width:750px){
+    .tcfs-brand-story .bs2-journey{ padding:56px 24px 72px; }
+    .tcfs-brand-story .bs2-journey__title{ font-size:28px; margin-bottom:36px; }
+    .tcfs-brand-story .bs2-journey__stage{
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:36px;
+        min-height:0;
+    }
+    .tcfs-brand-story .bs2-journey__media{
+        justify-self:stretch;
+        max-width:none;
+        aspect-ratio:4/3;
+    }
+    .tcfs-brand-story .bs2-journey__caption{ max-width:none; }
+    .tcfs-brand-story .bs2-journey__year{ font-size:30px; }
+    .tcfs-brand-story .bs2-journey__track{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        gap:24px;
+        justify-content:flex-start;
+        padding-bottom:6px;
+    }
+    .tcfs-brand-story .bs2-journey__year-btn{ flex-shrink:0; font-size:13px; }
+    .tcfs-brand-story .bs2-journey__year-btn.is-active{ font-size:15px; }
+    .tcfs-brand-story .bs2-journey__prev{ left:6px; }
+    .tcfs-brand-story .bs2-journey__next{ right:6px; }
+    .tcfs-brand-story .bs2-journey__nav{
+        background:rgba(255,255,255,.7);
+        border-radius:50%;
+        padding:4px;
     }
 }
