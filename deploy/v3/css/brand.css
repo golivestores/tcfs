@@ -41,7 +41,7 @@
     padding: 64px 16px;
 }
 .tcfs-brand-story .bs-scontent {
-    max-width: 1136px;
+    max-width: 1280px;
     margin: 0 auto;
 }
 
@@ -182,8 +182,8 @@
 }
 .tcfs-brand-story .bs-left-content {
     flex: 1;
+    min-width: 0;
     margin-top: 30px;
-    max-width: 460px;
 }
 .tcfs-brand-story .bs-left-content h2 {
     font-family: 'Noto Sans TC', sans-serif;
@@ -1299,10 +1299,9 @@
 .tcfs-brand-story .bs2-journey__prev{ left:-44px; }
 .tcfs-brand-story .bs2-journey__next{ right:-44px; }
 .tcfs-brand-story .bs2-journey__media{
-    justify-self:end;
+    justify-self:stretch;
     width:100%;
-    max-width:420px;
-    aspect-ratio:4/3;
+    aspect-ratio:16/9;
     overflow:hidden;
     background:#ddd;
 }
@@ -1310,7 +1309,7 @@
     width:100%; height:100%; object-fit:cover; display:block;
     transition:opacity .35s ease;
 }
-.tcfs-brand-story .bs2-journey__caption{ max-width:380px; }
+.tcfs-brand-story .bs2-journey__caption{ max-width:none; }
 .tcfs-brand-story .bs2-journey__year{
     font-family:'Instrument Sans','DM Sans',sans-serif;
     font-size:38px;
