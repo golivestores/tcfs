@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品页预览 · 方案1 天猫二维码卡片（CNByRodinShadingMaster_LE）</title>
+<style>
+  :root{--ink:#1d1d1d;--muted:#8a8a8a;--line:#ececec;--warm:#b98a5e;--tmall:#ff0036;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#fff;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  .topbar{background:#000;color:#fff;text-align:center;font-size:13px;padding:9px;}
+  .nav{display:flex;justify-content:center;gap:34px;padding:18px;border-bottom:1px solid var(--line);font-size:14px;color:#333;}
+  .brand{text-align:center;font-size:26px;letter-spacing:.5px;padding:22px 0 6px;font-weight:400;}
+  .wrap{max-width:1200px;margin:0 auto;padding:18px 24px 60px;}
+  .crumb{font-size:12.5px;color:var(--muted);margin:6px 0 22px;}
+  .layout{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start;}
+  /* gallery */
+  .gallery{display:flex;gap:14px;}
+  .thumbs{display:flex;flex-direction:column;gap:10px;}
+  .thumbs span{width:60px;height:60px;border-radius:8px;background:#efeae3;border:1px solid #e7e0d6;}
+  .thumbs span.on{border:1px solid #999;}
+  .hero{flex:1;height:520px;border-radius:10px;background:linear-gradient(135deg,#b6926c,#caa985);display:flex;align-items:center;justify-content:center;color:#fff8ef;font-size:14px;opacity:.95;}
+  /* info column */
+  .title{font-size:30px;line-height:1.32;font-weight:600;margin:2px 0 18px;}
+  .price{font-size:27px;font-weight:700;margin:0 0 18px;}
+  .swlabel{font-size:13px;color:#666;margin-bottom:9px;}
+  .sw{display:flex;gap:10px;margin-bottom:22px;}
+  .sw span{width:54px;height:54px;border-radius:8px;background:#c2a07d;border:1px solid #e2dccf;}
+  .sw span.on{border:1.5px solid #2b2b2b;}
+  .trust{display:grid;grid-template-columns:1fr 1fr;gap:15px 20px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .trust div{display:flex;align-items:center;gap:9px;font-size:13.5px;color:#555;}
+  .trust .ico{width:18px;height:18px;flex:0 0 18px;color:var(--warm);}
+
+  /* ===== 方案 1 · 天猫二维码横向卡片 ===== */
+  .tmall-qr{display:flex;align-items:center;gap:18px;border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;background:#fafafa;margin:20px 0 6px;}
+  .tmall-qr .qrwrap{flex:0 0 auto;background:#fff;padding:7px;border-radius:8px;border:1px solid #eee;}
+  .tmall-qr .qrwrap img,.tmall-qr .qrwrap svg{display:block;width:96px;height:96px;border-radius:4px;}
+  .tmall-qr h4{margin:0 0 6px;font-size:15px;display:flex;align-items:center;gap:8px;font-weight:600;}
+  .tmall-qr .tmlogo{font-size:11px;font-weight:800;color:#fff;background:var(--tmall);border-radius:4px;padding:2px 7px;letter-spacing:.5px;}
+  .tmall-qr p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.65;}
+  .tmall-qr p b{color:#555;}
+
+  /* accordions */
+  .acc{border-top:1px solid var(--line);}
+  .acc-h{display:flex;align-items:center;justify-content:space-between;padding:18px 0;font-weight:700;font-size:15px;cursor:pointer;}
+  .acc-h .chev{color:#bbb;font-size:13px;}
+  .acc-b{font-size:13.5px;color:#555;line-height:1.85;padding:0 0 18px;}
+  .acc-b p{margin:0 0 12px;}
+  .share{display:flex;align-items:center;gap:14px;padding:16px 0;color:#666;font-size:13px;}
+  .share .s{width:26px;height:26px;border-radius:50%;background:#f0f0f0;display:inline-block;}
+  .hint{max-width:1200px;margin:22px auto 0;padding:0 24px;font-size:12.5px;color:#c00;}
+  @media(max-width:880px){.layout{grid-template-columns:1fr;}.hero{height:360px;}}
+</style>
+</head>
+<body>
+  <div class="topbar">重磅消息： 涂酷美术课提亮多功能隔离霜 正式加入系列！</div>
+  <div class="brand">too cool for school</div>
+  <div class="nav"><span>所有商品</span><span>底妆系列</span><span>唇妆系列</span><span>眼妆系列</span><span>脸妆系列</span><span>关于我们</span></div>
+
+  <div class="wrap">
+    <div class="crumb">首页 ／ 涂酷美术课立体修容粉饼套装（限量款）</div>
+    <div class="layout">
+      <!-- left gallery (placeholder) -->
+      <div class="gallery">
+        <div class="thumbs"><span></span><span></span><span></span><span></span><span class="on"></span><span></span></div>
+        <div class="hero">产品主图（占位）</div>
+      </div>
+
+      <!-- right info column -->
+      <div class="info">
+        <div class="title">涂酷美术课立体修容粉饼套装（限量款）</div>
+        <div class="price">¥109.00</div>
+        <div class="swlabel">色号</div>
+        <div class="sw"><span class="on"></span><span></span></div>
+
+        <div class="trust">
+          <div><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7M5.5 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18.5 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>满 $100 免运费</div>
+          <div><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9 9 9 0 00-9 9zM3 3v6h6"/></svg>30 天退换货保证</div>
+          <div><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M12 3l8 4v5a8 8 0 11-16 0V7z"/></svg>官方正货保证</div>
+          <div><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 7v5l3 2M12 3a9 9 0 109 9 9 9 0 00-9-9z"/></svg>24 小时快速出货</div>
+        </div>
+
+        <!-- ▼▼▼ 方案 1：天猫二维码卡片（替换原来全宽大二维码） ▼▼▼ -->
+        <div class="tmall-qr">
+          <div class="qrwrap"><img src="page_site.png" alt="天猫旗舰店二维码"></div>
+          <div>
+            <h4><span class="tmlogo">天猫</span> 旗舰店购买</h4>
+            <p>扫码前往 <b>天猫官方旗舰店</b>，正品保障、活动同享。</p>
+          </div>
+        </div>
+        <!-- ▲▲▲ 方案 1 结束 ▲▲▲ -->
+
+        <div class="acc">
+          <div class="acc-h">产品描述 <span class="chev">⌃</span></div>
+          <div class="acc-b">
+            <p>涂酷美术课立体修容粉饼套装（限量款）是一款皮革灵感修容组，专为柔和且新手友善的立体修容而设计。细腻粉质服贴、不易飞粉，可打造自然骨相感，不易脏妆或卡粉。</p>
+            <p>三色阴影能平衡脸部光影，并自然融入肤色，适合修饰眼皮、鼻梁、下颚线、颧骨与发际线。搭配哑光皮革外观粉盒与原装进口修容刷，为日常修容增添精致限量感。</p>
+          </div>
+        </div>
+        <div class="acc">
+          <div class="acc-h">配送与退货 <span class="chev">⌄</span></div>
+        </div>
+        <div class="share">分享 <span class="s"></span><span class="s"></span><span class="s"></span><span class="s"></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hint">说明：二维码为内嵌 SVG 仿真，固定 96px 不会再撑满整栏。定稿后把它换成你的真实天猫二维码图片即可。</div>
+
+<script>
+function rng(seed){let s=seed*2654435761%2147483647;return()=>{s=s*48271%2147483647;return s/2147483647;};}
+function makeQR(svg){const N=25,r=rng(+svg.dataset.seed||1),NS='http://www.w3.org/2000/svg';
+  svg.setAttribute('viewBox',`0 0 ${N} ${N}`);
+  const rect=(x,y,w,h,f)=>{const e=document.createElementNS(NS,'rect');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('width',w);e.setAttribute('height',h);e.setAttribute('fill',f);svg.appendChild(e);};
+  rect(0,0,N,N,'#fff');
+  const finder=(x,y)=>{rect(x,y,7,7,'#111');rect(x+1,y+1,5,5,'#fff');rect(x+2,y+2,3,3,'#111');};
+  const inF=(x,y)=>((x<8&&y<8)||(x>N-9&&y<8)||(x<8&&y>N-9));
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){if(inF(x,y))continue;if(r()>0.55)rect(x,y,1,1,'#111');}
+  finder(0,0);finder(N-7,0);finder(0,N-7);}
+document.querySelectorAll('svg.qr').forEach(makeQR);
+</script>
+</body>
+</html>
