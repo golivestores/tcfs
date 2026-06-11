@@ -7,6 +7,7 @@
 <style>
   :root{--ink:#1d1d1d;--muted:#8a8a8a;--line:#ececec;--warm:#b98a5e;--tmall:#ff0036;}
   *{box-sizing:border-box;}
+  html,body{max-width:100%;overflow-x:hidden;}
   body{margin:0;background:#fff;color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
     -webkit-font-smoothing:antialiased;}
@@ -43,6 +44,27 @@
   .tmall-qr p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.65;}
   .tmall-qr p b{color:#555;}
 
+  /* ===== 多渠道销售小组件 ===== */
+  .channels{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fafafa;margin:14px 0 6px;}
+  .channels .ch-head{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;margin-bottom:14px;}
+  .channels .ch-head .dot{width:6px;height:6px;border-radius:50%;background:var(--tmall);flex:0 0 auto;}
+  .channels .ch-head b{color:var(--tmall);font-weight:700;}
+  .ch-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
+  .ch-grid .cell{aspect-ratio:1/1;background:#fff;border:1px solid #eee;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;padding:6px;transition:box-shadow .2s ease;}
+  .ch-grid .cell:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);}
+  .ch-grid .cell img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
+  @media(max-width:880px){.ch-grid{grid-template-columns:repeat(5,1fr);}}
+  /* 手机端：横向滑动，宽度严格限制在一屏内（滚动只发生在组件内部） */
+  @media(max-width:560px){
+    .channels{min-width:0;max-width:100%;overflow:hidden;}
+    .ch-grid{display:flex;gap:8px;width:100%;max-width:100%;overflow-x:auto;
+      -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding-bottom:6px;
+      scrollbar-width:none;-ms-overflow-style:none;}
+    .ch-grid::-webkit-scrollbar{display:none;}
+    .ch-grid .cell{flex:0 0 60px;width:60px;scroll-snap-align:start;}
+  }
+
   /* accordions */
   .acc{border-top:1px solid var(--line);}
   .acc-h{display:flex;align-items:center;justify-content:space-between;padding:18px 0;font-weight:700;font-size:15px;cursor:pointer;}
@@ -52,7 +74,8 @@
   .share{display:flex;align-items:center;gap:14px;padding:16px 0;color:#666;font-size:13px;}
   .share .s{width:26px;height:26px;border-radius:50%;background:#f0f0f0;display:inline-block;}
   .hint{max-width:1200px;margin:22px auto 0;padding:0 24px;font-size:12.5px;color:#c00;}
-  @media(max-width:880px){.layout{grid-template-columns:1fr;}.hero{height:360px;}}
+  @media(max-width:880px){.layout{grid-template-columns:1fr;}.layout>*{min-width:0;}.info{min-width:0;}.hero{height:360px;}}
+  @media(max-width:560px){.wrap{padding:14px 14px 48px;}}
 </style>
 </head>
 <body>
@@ -92,6 +115,29 @@
           </div>
         </div>
         <!-- ▲▲▲ 方案 1 结束 ▲▲▲ -->
+
+        <!-- ▼▼▼ 多渠道销售小组件 ▼▼▼ -->
+        <div class="channels">
+          <div class="ch-head"><span class="dot"></span>我们已入驻 <b>15</b> 个销售渠道</div>
+          <div class="ch-grid">
+            <div class="cell"><img src="logos/1.png" alt="天猫国际"></div>
+            <div class="cell"><img src="logos/2.png" alt="HARMAY 话梅"></div>
+            <div class="cell"><img src="logos/3.png" alt="得物"></div>
+            <div class="cell"><img src="logos/4.png" alt="京东"></div>
+            <div class="cell"><img src="logos/5.png" alt="唯品会"></div>
+            <div class="cell"><img src="logos/6.png" alt="MINISO 名创优品"></div>
+            <div class="cell"><img src="logos/7.png" alt="淘宝"></div>
+            <div class="cell"><img src="logos/8.png" alt="拼多多"></div>
+            <div class="cell"><img src="logos/9.png" alt="小红书"></div>
+            <div class="cell"><img src="logos/10.png" alt="WOW COLOUR"></div>
+            <div class="cell"><img src="logos/11.png" alt="调色师"></div>
+            <div class="cell"><img src="logos/12.png" alt="天猫"></div>
+            <div class="cell"><img src="logos/13.png" alt="天猫超市"></div>
+            <div class="cell"><img src="logos/14.png" alt="快手"></div>
+            <div class="cell"><img src="logos/15.png" alt="抖音"></div>
+          </div>
+        </div>
+        <!-- ▲▲▲ 多渠道销售小组件 结束 ▲▲▲ -->
 
         <div class="acc">
           <div class="acc-h">产品描述 <span class="chev">⌃</span></div>
